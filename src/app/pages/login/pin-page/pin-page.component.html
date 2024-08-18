@@ -1,0 +1,31 @@
+<main>
+    <div class="pin-display">
+        <h2>Wprowadź kod PIN</h2>
+        <p>
+          Wybrane konto:
+          <span>
+            {{accountForPin.name}}
+          </span>
+        </p>
+        <div class="pin-input">
+          @for (number of [1,1,1,1]; track $index) {
+              <div class="pin-number" [class.filled]="pin | charAt: $index"><div class="circle"></div></div>
+          }
+        </div>
+      </div>
+    
+      <div class="pin-keyboard">
+        <div class="buttons">
+          @for (digit of digits; track $index) {
+            <button matRipple class="digit-button" (click)="addDigit(digit)">{{ digit }}</button>
+          }
+    
+          <button [disabled]="pin.length===0" (click)="deleteDigit()" class="delete-button" matRipple>
+            <mat-icon>backspace</mat-icon>
+          </button>
+    
+          <button matRipple (click)="addDigit(0)" class="digit-button">0</button>
+          <!-- <button matRipple (click)="confirmPin()" class="confirm-button"><mat-icon>done</mat-icon></button> -->
+        </div>
+      </div>
+</main>

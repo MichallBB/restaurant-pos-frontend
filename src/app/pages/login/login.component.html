@@ -1,0 +1,65 @@
+<header>
+  <h1>Wybierz konto aby przejść dalej</h1>
+
+  @if (lastAccount) {
+    <div class="last-logged">
+      <h4>Ostatnio zalogowany jako:</h4>
+      <button [disabled]="confirmedAccount" mat-stroked-button (click)="submitByLastAcc(lastAccount)">
+        {{ lastAccount.name }}
+      </button>
+    </div>
+  }
+</header>
+
+<main>
+  @if (!confirmedAccount) {
+    <section class="form-container">
+      <form [formGroup]="accountControlForm" (ngSubmit)="submit()">
+        <div>
+          <mat-form-field>
+            <mat-label>Wybierz konto</mat-label>
+            <mat-select
+              [(value)]="selectedAccount"
+              formControlName="accountControl"
+            >
+              @if (chefs && chefs.length > 0) {
+                <mat-optgroup label="Właściciel">
+                  @for (owner of owners; track $index) {
+                    <mat-option [value]="owner"> {{ owner.name }} </mat-option>
+                  }
+                </mat-optgroup>
+              }
+              @if (waiters && waiters.length > 0) {
+                <mat-optgroup label="Kelner">
+                  @for (waiter of waiters; track $index) {
+                    <mat-option [value]="waiter">
+                      {{ waiter.name }}
+                    </mat-option>
+                  }
+                </mat-optgroup>
+              }
+              @if (chefs && chefs.length > 0) {
+                <mat-optgroup label="Kucharz">
+                  @for (chef of chefs; track $index) {
+                    <mat-option [value]="chef"> {{ chef.name }} </mat-option>
+                  }
+                </mat-optgroup>
+              }
+            </mat-select>
+          </mat-form-field>
+          <button type="submit" mat-raised-button>Przejdź dalej</button>
+        </div>
+      </form>
+    </section>
+  } @else {
+    <div class="pin-container">
+      <div class="back-button">
+        <button mat-stroked-button (click)="confirmedAccount = undefined">
+          < Powrót
+        </button>
+      </div>
+
+      <app-pin-page [accountForPin]="confirmedAccount" />
+    </div>
+  }
+</main>

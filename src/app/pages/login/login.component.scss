@@ -1,0 +1,45 @@
+main, header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+mat-form-field{
+    width: 25vw;
+}
+
+.form-container{
+    width: 25vw;
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        button{
+            margin-left: auto;
+        }
+    }
+}
+
+
+.last-logged{
+  display: inline-flex;
+  button{
+    margin-left: 10px;
+    margin-top: 15px;
+  }
+}
+
+.pin-container{
+    margin-top: 3%;
+}

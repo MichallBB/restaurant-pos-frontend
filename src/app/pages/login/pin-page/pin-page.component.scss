@@ -1,0 +1,80 @@
+.pin-keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .digit-button {
+        background-color: #f0f0f0;
+    }
+
+    .delete-button {
+        background-color: #ff5858;
+    }
+
+    .confirm-button {
+        background-color: #53df53;
+    }
+}
+
+.pin-number {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #929292;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    border: 1px solid transparent;
+
+    &>.circle {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &.filled {
+        border-color: #ff0000;
+        background-color: white;
+
+
+        &>.circle {
+            background-color: #ff0000;
+
+        }
+    }
+
+}
+
+.pin-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.pin-display{
+    text-align: center;
+}
