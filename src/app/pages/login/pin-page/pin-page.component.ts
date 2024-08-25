@@ -49,9 +49,7 @@ export class PinPageComponent {
       pinCode: this.pin
     }
     this.authService.login(acc).subscribe({
-      next: (res) => {
-        console.log('Login response:', res);
-        localStorage.setItem('token', res.accesToken);
+      next: () => {
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {

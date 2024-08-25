@@ -1,12 +1,16 @@
-<header>
-  <img src="" alt="logo" />
-</header>
 <main>
-  <section class="side-nav">
-    <app-side-nav />
-  </section>
+  <header>
+    logo
+  </header>
+  <div class="container">
+    <section class="side-nav">
+      <app-side-nav />
+    </section>
+  
+    <section class="content-container">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
 
-  <section class="container">
-    <router-outlet></router-outlet>
-  </section>
 </main>
+

@@ -1,0 +1,24 @@
+<main>
+  <h2>Menu</h2>
+  <section class="menu-containner">
+    <div class="restaurant-menu-section">
+      <div class="restaurant-menu-section__header">
+        <div class="header">
+          <h3>Lista dań</h3>
+        </div>
+        <div class="buttons-in-header">
+          <button mat-raised-button color="primary">
+            <mat-icon>edit</mat-icon>
+            Edytuj kategorie
+          </button>
+          <button mat-raised-button color="primary">
+            <mat-icon>add</mat-icon> Dodaj nowe danie
+          </button>
+        </div>
+      </div>
+      <div class="restaurant-menu-section__content">
+        <app-dishes-table></app-dishes-table>
+      </div>
+    </div>
+  </section>
+</main>

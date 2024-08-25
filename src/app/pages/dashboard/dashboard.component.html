@@ -1,1 +1,87 @@
-asd
+<main>
+  <h2>Witaj,</h2>
+  <section class="dashboard-container">
+    <div class="left-side">
+      <div class="left-side-upper-container">
+        <div class="left-side__header">
+          <h3>Najwięcej sprzedanych dań (ostatni tydzień)</h3>
+        </div>
+        <div class="left-side__content">
+          <div>
+            <canvasjs-chart
+              [options]="chartOptions"
+              [styles]="{ width: '100%', height: '290px' }"
+            ></canvasjs-chart>
+          </div>
+        </div>
+      </div>
+      <div class="left-side-lower-container">
+        <div class="left-side__header">
+          <h3>Pracownicy online</h3>
+        </div>
+        <div class="left-side-lower__content">
+          <div class="employee-box">
+            <div class="employee-box__img">
+              <div class="img"><mat-icon>no_photography</mat-icon></div>
+            </div>
+            <div class="employee-box__info">
+              <p>Jan Kowalski</p>
+              <p>Stanowisko: Kelner</p>
+            </div>
+          </div>
+
+          <div class="employee-box">
+            <div class="employee-box__img">
+              <div class="img">
+                <mat-icon>no_photography</mat-icon>
+              </div>
+            </div>
+            <div class="employee-box__info">
+              <p>Jan Kowalski</p>
+              <p>Stanowisko: Kelner</p>
+            </div>
+          </div>
+
+          <div class="employee-box">
+            <div class="employee-box__img">
+              <div class="img"><mat-icon>no_photography</mat-icon></div>
+            </div>
+            <div class="employee-box__info">
+              <p>Jan Kowalski</p>
+              <p>Stanowisko: Kelner</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="right-side__content">
+        <div class="grid-container">
+          <div matRipple class="grid-item">
+            <div class="header">
+              <h4>Aktywne zamówienia:</h4>
+              <p>4</p>
+            </div>
+          </div>
+          <div matRipple class="grid-item">
+            <div class="header">
+              <h4>Dzisiejsze rezerwacje:</h4>
+              <p>5</p>
+            </div>
+          </div>
+          <div matRipple class="grid-item">
+            <div class="header">
+              <h4>Kelnerów online</h4>
+              <p>5</p>
+            </div>
+          </div>
+          <div matRipple class="grid-item">
+            <div class="header">
+              <mat-icon>home</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

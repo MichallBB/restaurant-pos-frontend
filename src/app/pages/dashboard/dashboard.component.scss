@@ -1,0 +1,110 @@
+$height-container: 80vh;
+
+
+main{
+    // top right bottom left
+    margin: 0px 3% 3% 3%;
+    color: rgb(78, 78, 78);
+}
+
+section{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.left-side{
+    width: 50%;
+    height: $height-container;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side-upper-container{
+    height: $height-container/1.5;
+}
+
+.left-side-lower-container{
+    margin-top: 5%;
+}
+.left-side-lower-container, .left-side-upper-container{
+    width: 100%;
+    background-color: white;
+    padding-left: 5%;
+}
+
+.left-side__content{
+    margin-right: 3%;
+    height: $height-container/3;
+}
+
+.left-side__header{
+}
+
+
+.employee-box{
+    display: flex;
+
+    &>.employee-box__img{
+        height: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        .img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f1f1f1;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+    }
+
+    &>.employee-box__info{
+        height: 100px;
+    }
+}
+
+
+.right-side{
+    width: 50%;
+    height: $height-container;
+    background-color: white;
+    margin-left: 5%;
+}
+
+.right-side__content{
+    .grid-container{
+        margin: 20px 20px 20px 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .grid-item{
+            width: 130px;
+            height: 130px;
+            background-color: #f1f1f1;
+            margin-right: 5%;
+            margin-top: 5%;
+            padding: 10px 10px 10px 10px;
+            h4{
+            }
+            p{
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+.header{
+    width: 100%;
+}

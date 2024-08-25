@@ -65,8 +65,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {}
-
   getEmployeeById(id: number) {
     this.accountsService.getEmployeeById(id).subscribe({
       next: (employee: EmployeeAccount) => {

@@ -22,7 +22,7 @@
               [(value)]="selectedAccount"
               formControlName="accountControl"
             >
-              @if (chefs && chefs.length > 0) {
+              @if (owners && owners.length > 0) {
                 <mat-optgroup label="Właściciel">
                   @for (owner of owners; track $index) {
                     <mat-option [value]="owner"> {{ owner.name }} </mat-option>
