@@ -29,7 +29,10 @@ export class AuthService {
         switchMap(() =>
           this.userService
             .getUserByToken()
-            .pipe(tap((user) => { this.currentUserService.currentUser = user; console.log(user); })),
+            .pipe(tap((user) => { 
+              this.currentUserService.currentUser = user; 
+              console.log(user + " is logged in"); 
+            })),
         ),
       );
   }
