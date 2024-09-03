@@ -31,7 +31,6 @@ export class AuthService {
             .getUserByToken()
             .pipe(tap((user) => { 
               this.currentUserService.currentUser = user; 
-              console.log(user + " is logged in"); 
             })),
         ),
       );

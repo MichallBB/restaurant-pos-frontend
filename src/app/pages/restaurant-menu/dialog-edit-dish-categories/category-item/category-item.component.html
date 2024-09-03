@@ -1,0 +1,50 @@
+<div class="category-item">
+  <div class="name">
+    <div cdkDragHandle class="move-icon">
+      <mat-icon>pan_tool</mat-icon>
+    </div>
+    @if (editMode) {
+      <form class="change-name-form">
+        <input
+          [formControl]="categoryNameControl"
+          (focus)="(true)"
+          [placeholder]="category.name"
+          [value]="category.name"
+          type="text"
+        />
+        <button
+          matRipple
+          color="transparent"
+          type="button"
+          (click)="editMode = !editMode"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </form>
+    } @else {
+      <p>
+        {{ category.name }}
+      </p>
+    }
+  </div>
+
+  <div class="actions">
+    @if (editMode) {
+      <button
+        class="confirm-button"
+        mat-mini-fab
+        color="green"
+        (click)="saveName()"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+    } @else {
+      <button mat-mini-fab (click)="editName()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    }
+    <button mat-mini-fab color="warn" (click)="removeDishCategory()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

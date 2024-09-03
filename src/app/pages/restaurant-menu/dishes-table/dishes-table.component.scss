@@ -7,3 +7,16 @@ table{
 .mat-mdc-row:hover .mat-mdc-cell {
     background-color: #f1f1f1;
   }
+
+.search-form{
+    mat-form-field{
+        width: 300px;
+    }
+}
+
+td{
+    &>button:first-of-type {
+        margin-right: 10px;
+    }
+
+}

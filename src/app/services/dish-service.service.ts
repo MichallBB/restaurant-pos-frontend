@@ -15,7 +15,6 @@ export class DishService {
   }
 
   toggleDishActive(dishId: number, active: boolean): Observable<DishWithCategoryName> {
-    console.log(dishId);
     return this.http.post<DishWithCategoryName>(`http://localhost:8080/api/dish/toggleIsEnable/${dishId}`, { isEnabled: active });
   }
 }

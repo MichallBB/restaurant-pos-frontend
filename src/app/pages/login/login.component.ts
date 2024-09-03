@@ -50,8 +50,14 @@ export class LoginComponent implements OnInit {
   selectedAccount!: EmployeeAccount;
   lastAccount!: EmployeeAccount;
 
+  emptyEmployeeAccount: EmployeeAccount = {
+    id: -1,
+    name: '',
+    role: '',
+  }
+
   accountControlForm: FormGroup = new FormGroup({
-    accountControl: new FormControl({} as EmployeeAccount, Validators.required),
+    accountControl: new FormControl(this.emptyEmployeeAccount, Validators.required),
   });
 
   constructor(private accountsService: EmployeeAccountService) {}
@@ -88,7 +94,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if (this.accountControlForm.value.accountControl === undefined) {
+    console.log(this.accountControlForm.value.accountControl);
+    if (this.accountControlForm.value.accountControl.id === -1) {
       this.accountControlForm.controls['accountControl'].setErrors({
         incorrect: true,
       });
