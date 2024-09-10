@@ -2,10 +2,14 @@
   <header>
     logo
   </header>
+
   <div class="container">
-    <section class="side-nav">
-      <app-side-nav />
-    </section>
+    <mat-drawer-container>
+      <mat-drawer mode="side" opened> 
+        <app-side-nav />
+      </mat-drawer>
+    </mat-drawer-container>
+
   
     <section class="content-container">
       <router-outlet></router-outlet>
@@ -14,3 +18,20 @@
 
 </main>
 
+
+
+ <!-- <mat-drawer-container>
+  <mat-drawer #drawer mode="side" opened>
+    <app-side-nav></app-side-nav>
+  <div class="example-sidenav-content">
+  </div>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    
+  <button type="button" mat-button (click)="drawer.toggle()">
+    Toggle sidenav
+  </button>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+ </mat-drawer-container> -->

@@ -50,7 +50,7 @@ export class PinPageComponent {
     }
     this.authService.login(acc).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/strona-domowa']);
       },
       error: (err) => {
         console.log('Login error:', err);

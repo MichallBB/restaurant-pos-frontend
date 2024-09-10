@@ -1,1 +1,49 @@
-<p>dialog-add-dish works!</p>
+<h2 mat-dialog-title>Nowe danie</h2>
+<form [formGroup]="newDishFormGroup" (ngSubmit)="addNewDish()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Nazwa dania</mat-label>
+      <input required matInput formControlName="dishName" />
+    </mat-form-field>
+
+    <mat-form-field class="category-control">
+      <mat-label>Kategoria</mat-label>
+      <mat-select required formControlName="categoryControl">
+        @for (category of categories; track $index) {
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="always">
+      <mat-label>Cena</mat-label>
+      <input
+        formControlName="price"
+        required
+        matInput
+        type="number"
+        placeholder="0"
+      />
+      <span style="margin-left: 5px" matTextSuffix>zł</span>
+    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <mat-label>Opis</mat-label>
+        <input formControlName="descriptionControl" matInput />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      [disabled]="newDishFormGroup.invalid"
+    >
+      Potwierdź
+    </button>
+  </mat-dialog-actions>
+</form>

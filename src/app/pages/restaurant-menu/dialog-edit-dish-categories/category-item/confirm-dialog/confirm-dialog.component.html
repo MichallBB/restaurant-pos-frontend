@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Potwierdzenie usunięcia - {{ data.element.name }}</h2>
+<mat-dialog-content>
+  <p>
+    Czy na pewno chcesz usunąć ten element? Nieodwracalnie utracisz wszystkie
+    dania przypisane do tej kategorii
+  </p>
+  <div class="confirm-category-name">
+    <p>
+      Wpisz nazwę kategorii (<b>{{ data.element.name }}</b>) poniżej aby
+      potwierdzić
+    </p>
+    <mat-form-field>
+      <mat-label>Nazwa kategorii</mat-label>
+      <input matInput [formControl]="confirmFormControl" required />
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Nie</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    [disabled]="!confirmFormControl.valid"
+  >
+    Tak
+  </button>
+</mat-dialog-actions>

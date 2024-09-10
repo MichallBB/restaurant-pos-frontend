@@ -3,6 +3,8 @@ import { MatRipple } from '@angular/material/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-side-nav',
@@ -11,7 +13,9 @@ import { AuthService } from '../../auth/auth.service';
     MatIcon,
     MatRipple,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    MatSidenavModule,
+    MatButtonModule
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'

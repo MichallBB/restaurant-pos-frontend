@@ -7,10 +7,10 @@ import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { MatRipple } from '@angular/material/core';
 import { DishCategoryService } from '../../../../services/dish-category/dish-category.service';
 import { ToastrService } from 'ngx-toastr';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Form, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RefreshService } from '../../../../services/dish-category/refresh-dish-category.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component'; 
 
 @Component({
   selector: 'app-category-item',
@@ -31,16 +31,22 @@ import { ConfirmDialogComponent } from '../../../../shared/confirm-dialog/confir
 export class CategoryItemComponent {
   editMode = false;
   @Input() category!: DishCategory;
-  categoryNameControl = new FormControl('', Validators.required);
+  categoryNameControl!: FormControl;
 
   constructor(
     private dishCategoryService: DishCategoryService,
     private toastr: ToastrService,
     private refreshService: RefreshService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
-  editName() {
+  ngOnInit() {
+    this.categoryNameControl = new FormControl(this.category.name, [
+      Validators.required,
+    ]);
+  }
+
+  toggleEditMode() {
     this.editMode = !this.editMode;
   }
 
@@ -69,29 +75,26 @@ export class CategoryItemComponent {
   removeDishCategory() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        title: 'Potwierdzenie usunięcia',
-        message: 'Czy na pewno chcesz usunąć ten element? Nieodwracalnie utracisz wszystkie dania przypisane do tej kategorii?',
         element: this.category,
-      }
+      },
     });
-
     dialogRef.afterClosed().subscribe((result) => {
-      if (result){
-        console.log('Usuwanie kategorii');
-      }else{
-        console.log('Anulowano usuwanie kategorii');
+      if (result) {
+        this.removeCategory();
+      } else {
         return;
       }
     });
+  }
 
-
-    // this.dishCategoryService.removeDishCategory(this.category.id).subscribe({
-    //   next: () => {
-    //     this.refreshService.refresh();
-    //   },
-    //   error: (error) => {
-    //     this.toastr.error('Błąd podczas usuwania kategorii');
-    //   },
-    // });
+  removeCategory() {
+    this.dishCategoryService.removeDishCategory(this.category.id).subscribe({
+      next: () => {
+        this.refreshService.refresh();
+      },
+      error: (error) => {
+        this.toastr.error('Błąd podczas usuwania kategorii');
+      },
+    });
   }
 }

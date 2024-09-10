@@ -17,4 +17,8 @@ export class DishService {
   toggleDishActive(dishId: number, active: boolean): Observable<DishWithCategoryName> {
     return this.http.post<DishWithCategoryName>(`http://localhost:8080/api/dish/toggleIsEnable/${dishId}`, { isEnabled: active });
   }
+
+  removeDish(dishId: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8080/api/dish/removeDish/${dishId}`);
+  }
 }
