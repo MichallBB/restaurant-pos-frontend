@@ -13,6 +13,11 @@ main{
 }
 header{
     height: $header-height;
+    & > button{
+        position: absolute;
+        z-index: 9999;
+        margin-top: 35px;
+    }
 }
 
 .content-container{
@@ -21,7 +26,15 @@ header{
     height: 100%;
 }
 
+mat-drawer-container{
+    height: 99%;
+}
 mat-drawer{
-    min-width: 250px;
-    width: 25%;
+    width: 15vw;
+    min-width: 200px;
+    border-right: 1px solid lightgray;
+}
+
+.mat-drawer-inner-container{
+    width: 100px;
 }

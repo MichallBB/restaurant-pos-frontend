@@ -1,5 +1,11 @@
 <nav>
   <div class="nav-items-container">
+    <div class="drawer-button">
+      <button mat-icon-button (click)="toggleDrawer()">
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+    </div>
+
     <div matRipple class="nav-item">
       <a routerLink="strona-domowa" routerLinkActive="active">
         <mat-icon>home</mat-icon>

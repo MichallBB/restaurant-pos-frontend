@@ -13,6 +13,7 @@ import { CurrentUserService } from '../../auth/current-user.service';
 })
 export class DashboardComponent {
 
+  user = this.currentUserService.currentUser;
   constructor(private currentUserService: CurrentUserService) {}
 
   ngOnInit() {

@@ -48,6 +48,15 @@ export class AuthService {
   private saveToken(token: string) {
     localStorage.setItem(this.storageKey, token);
   }
+
+  loadCurrentUser(): Observable<boolean> {
+    return this.userService.getUserByToken().pipe(
+      tap((user) => {
+        this.currentUserService.currentUser = user;
+      }),
+      switchMap(() => [true]),
+    );
+  }
 }
 
 export interface LoginObj {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatRipple } from '@angular/material/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -21,11 +21,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   styleUrl: './side-nav.component.scss'
 })
 export class SideNavComponent {
+  @Input() drawer!: any;
 
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   logout(){
     this.authService.logout();
+  }
+
+  toggleDrawer(){
+    this.drawer.toggle();
   }
 }

@@ -7,10 +7,12 @@ nav{
     border-right: 1px solid lightgray;
     
 }
-
+.nav-items-container{
+    width: 90%;
+}
 .nav-item{
     cursor: pointer;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 20px 10px 10px;
     &>a{
         display: flex;
         align-items: center;
@@ -28,5 +30,17 @@ nav{
     }
     &:hover{
         background-color: rgb(238,241,243);
+    }
+}
+
+.drawer-button{
+    position: absolute;
+    z-index: 9999;
+    margin-top: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button {
+        z-index: 9999;
     }
 }

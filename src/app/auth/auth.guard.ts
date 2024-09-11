@@ -1,24 +1,35 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { Observable, of } from 'rxjs';
+import { CurrentUserService } from './current-user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private currentUserService: CurrentUserService,
+  ) {}
 
-  canActivate(): boolean {
+  canActivate(): Observable<boolean> {
     return this.checkAuth();
   }
 
-  //
-  private checkAuth() {
+  private checkAuth(): Observable<boolean> {
     const token = localStorage.getItem('token');
     if (token) {
-      return true;
+      // check if user is loaded?
+      if (this.currentUserService.currentUser) {
+        return of(true);
+      }
+      console.log('loading user');
+      return this.authService.loadCurrentUser();
     } else {
       this.router.navigate(['/login']);
-      return false;
+      return of(false);
     }
   }
 }

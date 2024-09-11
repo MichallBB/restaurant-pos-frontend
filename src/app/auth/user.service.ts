@@ -15,6 +15,4 @@ export class UserService {
     getUserByToken(): Observable<EmployeeAccount> {
         return this.http.get<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/getByToken`);
     }
-
-
 }

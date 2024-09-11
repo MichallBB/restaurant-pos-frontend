@@ -11,7 +11,7 @@ import { UserSettingsPageComponent } from './pages/user-settings-page/user-setti
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
-    { path: '', component: HomePageComponent, children:[
+    { path: '', component: HomePageComponent, canActivate: [AuthGuard] , children:[
         {path: 'strona-domowa', component: DashboardComponent, canActivate: [AuthGuard]},
         { path: 'menu', component: RestaurantMenuComponent, canActivate: [AuthGuard] },
         { path: 'zamowienia', component: OrdersComponent, canActivate: [AuthGuard]},

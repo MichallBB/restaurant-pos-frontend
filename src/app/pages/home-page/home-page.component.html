@@ -1,16 +1,24 @@
 <main>
   <header>
     logo
+    <!-- <button mat-icon-button (click)="drawer.toggle()">
+      
+      @if (isDrawerClosed) {
+        <mat-icon>arrow_forward_ios</mat-icon>
+      }@else {
+        <mat-icon>arrow_back_ios</mat-icon>
+      }
+    </button> -->
   </header>
 
   <div class="container">
     <mat-drawer-container>
-      <mat-drawer mode="side" opened> 
-        <app-side-nav />
+      <mat-drawer #drawer mode="side" opened (closed)="isDrawerClosed = true" (opened)="isDrawerClosed = false"> 
+          <app-side-nav [drawer]="drawer" />
       </mat-drawer>
     </mat-drawer-container>
 
-  
+
     <section class="content-container">
       <router-outlet></router-outlet>
     </section>
