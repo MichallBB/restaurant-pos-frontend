@@ -4,7 +4,7 @@
       <mat-icon>pan_tool</mat-icon>
     </div>
     @if (editMode) {
-      <form class="change-name-form">
+      <form class="change-name-form" (ngSubmit)="null">
         <input
           [formControl]="categoryNameControl"
           [placeholder]="category.name"

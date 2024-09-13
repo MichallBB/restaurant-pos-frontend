@@ -4,21 +4,21 @@
     <form [formGroup]="newCategoryForm" (ngSubmit)="addNewCategory()">
       <mat-form-field>
         <mat-label>Nazwa kategorii</mat-label>
-        <input  matInput formControlName="newCategoryName" />
+        <input matInput formControlName="newCategoryName" />
       </mat-form-field>
 
-      <button type="submit" mat-raised-button color="primary">Dodaj kategorię</button>
-
+      <button type="submit" mat-raised-button color="primary">
+        Dodaj kategorię
+      </button>
     </form>
-
-
   </div>
-  <p>
-    Przeciągnij i upuść kategorie, aby zmienić ich kolejność
-  </p>
+
   @if (!dataLoaded) {
     <mat-spinner></mat-spinner>
+  } @else if (dishCategories.length <= 0) {
+    <p class="no-data">Brak kategorii</p>
   } @else {
+    <p>Przeciągnij i upuść kategorie, aby zmienić ich kolejność</p>
     <div cdkDropList (cdkDropListDropped)="drop($event)">
       @for (category of dishCategories; track $index) {
         <div cdkDrag [cdkDragData]="category">
@@ -27,6 +27,7 @@
       }
     </div>
   }
+
 </mat-dialog-content>
 
 <mat-dialog-actions>

@@ -7,7 +7,7 @@ import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
 import { MatRipple } from '@angular/material/core';
 import { DishCategoryService } from '../../../../services/dish-category/dish-category.service';
 import { ToastrService } from 'ngx-toastr';
-import { Form, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Form, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RefreshService } from '../../../../services/dish-category/refresh-dish-category.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component'; 
@@ -24,6 +24,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatRipple,
     ReactiveFormsModule,
     MatDialogModule,
+    FormsModule
   ],
   templateUrl: './category-item.component.html',
   styleUrl: './category-item.component.scss',

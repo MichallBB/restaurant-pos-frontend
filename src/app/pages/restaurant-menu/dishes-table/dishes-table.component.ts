@@ -15,6 +15,7 @@ import { DeleteConfirmDialogComponent } from '../../../shared/delete-confirm-dia
 import { Title } from '@angular/platform-browser';
 import { Dish } from '../../../models/dish.model';
 import { ToastrService } from 'ngx-toastr';
+import { DialogEditDishComponent } from '../dialog-edit-dish/dialog-edit-dish.component';
 
 @Component({
   selector: 'app-dishes-table',
@@ -103,6 +104,18 @@ export class DishesTableComponent {
         });
       } else {
         return;
+      }
+    });
+  }
+
+  editDish(dish: Dish) {
+    const dialogRef = this.dialog.open(DialogEditDishComponent, {
+      data: dish,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.refreshService.refresh();
       }
     });
   }

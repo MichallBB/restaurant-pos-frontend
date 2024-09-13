@@ -15,4 +15,8 @@ export class UserService {
     getUserByToken(): Observable<EmployeeAccount> {
         return this.http.get<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/getByToken`);
     }
+
+    changePin(id: number, oldPin: string, newPin: string): Observable<EmployeeAccount> {
+        return this.http.post<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/changePin`, {id: id, oldPin: oldPin, newPin: newPin});
+    }
 }
