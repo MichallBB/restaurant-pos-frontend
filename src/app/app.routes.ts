@@ -8,6 +8,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserSettingsPageComponent } from './pages/user-settings-page/user-settings-page.component';
+import { OrderCreateComponent } from './pages/order-create/order-create.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ export const routes: Routes = [
         {path: 'strona-domowa', component: DashboardComponent, canActivate: [AuthGuard]},
         { path: 'menu', component: RestaurantMenuComponent, canActivate: [AuthGuard] },
         { path: 'zamowienia', component: OrdersComponent, canActivate: [AuthGuard]},
+        { path: 'zamowienia/nowe-zamowienie', component: OrderCreateComponent, canActivate: [AuthGuard] },
         {path: 'rezerwacje', component: ReservationsComponent, canActivate: [AuthGuard]},
         {path: 'uzytkownicy', component: UsersComponent, canActivate: [AuthGuard]},
         { path: 'ustawienia', component: UserSettingsPageComponent, canActivate: [AuthGuard]},

@@ -18,6 +18,7 @@ export class DashboardComponent {
 
   ngOnInit() {
     console.log('Current user:', this.currentUserService.currentUser);
+    console.log(localStorage.getItem('token'));
   }
 
   chart: any;

@@ -1,0 +1,58 @@
+<main>
+  <h2>Zamówienia</h2>
+  <section>
+
+    <div class="new-order__container">
+      <div class="dishes__container">
+        <div class="categories-button-group">
+          @for (category of categoryWithDishes; track $index) {
+            <button
+              mat-stroked-button
+              class="category-button"
+              color="primary"
+              (click)="switchSelectedCategory(category)"
+            >
+              {{ category.name }}
+            </button>
+          }
+        </div>
+        @if (selectedCategory) {
+          <h3>{{ selectedCategory.name }}</h3>
+        }
+        @if (selectedCategory) {
+          <div class="dishes-list__container">
+            @for (dish of dishes; track $index) {
+              <mat-card appearance="outlined">
+                <mat-card-header>
+                  <mat-card-title>
+                    <div class="card-header">
+                        {{ dish.name }}
+                    </div>
+                  </mat-card-title>
+                  <mat-card-subtitle>
+                    @if (dish.description.length < 10 && dish.name.length > 20) {
+                        {{dish.name}}
+                    }@else {
+                        {{ dish.description }}
+                    }
+                </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-actions align="end">
+                  <button mat-icon-button color="primary" (click)="addToCart(dish)">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            }
+          </div>
+        } @else {
+          <p>Wybierz kategorię</p>
+        }
+      </div>
+      <div class="cart__container">
+        <app-cart [cartItems]="cartItems" [sumOfCartItems]="sumOfCartItems"></app-cart>
+      </div>
+
+    </div>
+  </section>
+</main>

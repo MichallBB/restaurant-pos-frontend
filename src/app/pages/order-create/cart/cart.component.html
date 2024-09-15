@@ -1,0 +1,36 @@
+<div class="cart__container">
+    <div class="cart__header">
+        <div style="width: 100%">
+            <h3>Koszyk</h3>
+        </div>
+      <div class="cart__list">
+          @for (cartItem of cartItems; track $index) {
+              <div class="divider"></div>
+              <div class="cart-item">
+                <div class="cart-item__name">{{ cartItem.name }}</div>
+                <div class="cart-item__price">{{ cartItem.price }} zł</div>
+
+                <div class="cart-item__quantity">
+                    <span>Ilość: 1</span>
+
+                  <button mat-icon-button color="primary">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+
+                  <button mat-icon-button color="primary">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </div>
+              </div>
+          }
+      </div>
+    </div>
+
+    <div class="cart__summary">
+      <div class="cart__summary__total">
+        <span>Ilość {{ cartItems.length }}</span>
+          <span>Suma: {{sumOfCartItems}} zł</span>
+      </div>
+      <button mat-stroked-button color="primary">Zamów</button>
+    </div>
+  </div>

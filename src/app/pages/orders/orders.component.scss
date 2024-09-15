@@ -7,7 +7,22 @@ main {
 section {
   padding: 0 15px 15px 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: white;
   height: 82vh;
+}
+
+
+header{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+mat-panel-title, mat-panel-description{
+  color: #ff7b00
+  // #83ff7f; - green
 }

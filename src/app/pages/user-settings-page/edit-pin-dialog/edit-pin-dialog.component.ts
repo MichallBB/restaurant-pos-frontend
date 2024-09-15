@@ -88,6 +88,8 @@ export class EditPinDialogComponent {
         error: (error) => {
           if (error.status === 411) {
             this.toastr.error('Nieprawidłowy stary pin');
+          } else if (error.status === 415) {
+            this.toastr.warning('Nowy pin nie może być taki sam jak stary pin');
           } else {
             this.toastr.error('Błąd podczas zmiany pinu');
           }
@@ -105,6 +107,12 @@ export class EditPinDialogComponent {
       const formGroup = control as FormGroup;
       const newPin = formGroup.get('newPin')?.value;
       const newPinRepeated = formGroup.get('newPinRepeated')?.value;
+      if (newPin !== newPinRepeated) {
+        formGroup.get('newPinRepeated')?.setErrors({ passwordsMismatch: true });
+      }
+      if (newPin === newPinRepeated) {
+        formGroup.get('newPinRepeated')?.setErrors(null);
+      }
 
       return newPin === newPinRepeated ? null : { passwordsMismatch: true };
     };
