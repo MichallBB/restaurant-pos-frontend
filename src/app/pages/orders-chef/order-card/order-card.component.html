@@ -1,0 +1,25 @@
+<div class="order-card">
+  <div class="card-header">
+    <div class="header-text">Zamówienie {{ order.id }}</div>
+    <div class="header-timer">
+      <p>30 min temu</p>
+
+      <mat-icon>timer</mat-icon>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="progress">
+      <p>Postęp: {{ progress }}%</p>
+      <mat-progress-bar [value]="progress"></mat-progress-bar>
+    </div>
+    <div class="dishes-list">
+      @for (dish of order.dish; track $index) {
+        <p>
+          <mat-checkbox (change)="changeProgress($event.checked)">{{
+            dish.name
+          }}</mat-checkbox>
+        </p>
+      }
+    </div>
+  </div>
+</div>

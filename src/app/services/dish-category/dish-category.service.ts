@@ -18,6 +18,10 @@ export class DishCategoryService {
   getAllDishCategories(): Observable<DishCategory[]> {
     return this.http.get<DishCategory[]>('http://localhost:8080/api/dishCategory/getAll');
   }
+  getAllEnabledDishCategories(): Observable<DishCategory[]> {
+    return this.http.get<DishCategory[]>('http://localhost:8080/api/dishCategory/getAllEnabled');
+  }
+
 
   moveDishCategory(dishCategoryId: number, newIndex: number): Observable<DishCategory> {
     return this.http.post<DishCategory>(`http://localhost:8080/api/dishCategory/moveDishCategory/${dishCategoryId}/${newIndex}`, {});

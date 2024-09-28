@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Potwierdź zamówienie</h2>
+
+<mat-dialog-content>
+  <div class="cart__list">
+    @for (cartItem of cartItems; track $index) {
+      <div class="cart-item">
+        <div class="cart-item__name">{{ cartItem.dish.name }}</div>
+        <div class="cart-item__price">
+          {{ cartItem.dish.price | twoDecimal }} zł
+        </div>
+
+        <div class="cart-item__quantity">
+          <div class="quantity-text">
+            <span>{{ cartItem.quantity }}x</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="cart__summary">
+    <div class="cart__summary__total">
+      <span>Suma: {{ sumOfCartItems | twoDecimal }} zł</span>
+      <span>Stolik: {{ selectedTable }}</span>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Anuluj</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Potwierdź</button>
+</mat-dialog-actions>

@@ -9,11 +9,9 @@ main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
 }
 
 section {
-  padding: 0 1rem 1rem 1rem;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -22,13 +20,13 @@ section {
 
 .new-order__container {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 
   width: 100%;
   height: 100%;
 
   .dishes__container {
-    padding-right: 1rem;
+    padding: 0 1rem;
   }
   .cart__container {
     border-left: #e0e0e0 1px solid;
@@ -40,7 +38,6 @@ section {
 
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
   overflow-y: auto;
 
   & > button {
@@ -95,7 +92,7 @@ mat-card {
   padding: 0 0 0 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .new-order__container {
     display: flex;
     flex-direction: column;

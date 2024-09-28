@@ -1,36 +1,66 @@
 <div class="cart__container">
-    <div class="cart__header">
-        <div style="width: 100%">
-            <h3>Koszyk</h3>
-        </div>
-      <div class="cart__list">
-          @for (cartItem of cartItems; track $index) {
-              <div class="divider"></div>
-              <div class="cart-item">
-                <div class="cart-item__name">{{ cartItem.name }}</div>
-                <div class="cart-item__price">{{ cartItem.price }} zł</div>
-
-                <div class="cart-item__quantity">
-                    <span>Ilość: 1</span>
-
-                  <button mat-icon-button color="primary">
-                    <mat-icon>remove</mat-icon>
-                  </button>
-
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                </div>
-              </div>
-          }
-      </div>
+  <div class="cart__content">
+    <div class="header-text">
+      <h3>Koszyk</h3>
     </div>
+    <div class="cart__list">
+      @for (cartItem of cartItems; track $index) {
+        <div class="divider"></div>
+        <div class="cart-item">
+          <div class="cart-item__name">{{ cartItem.dish.name }}</div>
+          <div class="cart-item__price">
+            {{ cartItem.dish.price | twoDecimal }} zł
+          </div>
 
-    <div class="cart__summary">
-      <div class="cart__summary__total">
-        <span>Ilość {{ cartItems.length }}</span>
-          <span>Suma: {{sumOfCartItems}} zł</span>
-      </div>
-      <button mat-stroked-button color="primary">Zamów</button>
+          <div class="cart-item__quantity">
+            <div class="quantity-text">
+              <span>{{ cartItem.quantity }}x</span>
+            </div>
+
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="removeItem(cartItem.dish)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="addTheSameItem(cartItem.dish)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      }
     </div>
   </div>
+
+  <div class="cart__summary">
+    <div class="cart__summary__total">
+      <span>Ilość {{ quantityOfItems }}</span>
+      <span>Suma: {{ sumOfCartItems | twoDecimal }} zł</span>
+      <div class="table-selection">
+
+        <mat-form-field>
+          <mat-label>Wybierz stolik</mat-label>
+          <mat-select [(value)]="tableSelected">
+            @for (table of tables; track $index) {
+              <mat-option [value]="table">{{table.tableNumber}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+        <button
+          (click)="openConfirmOrderDialog()"
+          mat-raised-button
+          color="primary"
+          [disabled]="cartItems.length === 0 || !tableSelected"
+        >
+          Zamów
+        </button>
+    </div>
+  </div>
+</div>

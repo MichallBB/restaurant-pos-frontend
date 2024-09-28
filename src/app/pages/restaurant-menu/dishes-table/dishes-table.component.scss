@@ -1,29 +1,48 @@
-
-table{
-    border-top: none;
-    box-shadow: none;
+.mat-mdc-table {
+  border-top: none;
+  box-shadow: none;
+  width: 100%;
+  max-height: 60vh;
+  overflow-x: auto;
 }
-
 .mat-mdc-row:hover .mat-mdc-cell {
-    background-color: #f1f1f1;
-  }
-
-.search-form{
-    mat-form-field{
-        width: 300px;
-    }
+  background-color: #f1f1f1;
 }
 
-td{
-    &>button:first-of-type {
-        margin-right: 10px;
-    }
-
+.search-form {
+  mat-form-field {
+    width: 300px;
+  }
 }
 
-.no-data{
-    width: 100%;
-    text-align: center;
-    font-size: 1.6rem;
-    height: 25vh;
+td {
+  & > button:first-of-type {
+    margin-right: 10px;
   }
+}
+
+.no-data {
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  height: 25vh;
+}
+
+.mat-column-name {
+  width: 40%;
+}
+.mat-column-dishCategoryName {
+  width: 10%;
+}
+.mat-column-description {
+  width: 20%;
+}
+.mat-column-price {
+  width: 10%;
+}
+.mat-column-active {
+  width: 5%;
+}
+.mat-column-actions {
+  width: 15%;
+}

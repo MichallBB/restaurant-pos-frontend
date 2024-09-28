@@ -5,4 +5,5 @@ export interface DishWithCategoryName {
     price: number;
     description: string;
     dishCategoryName: string;
+    enabled: boolean;
 }

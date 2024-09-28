@@ -11,6 +11,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { CartComponent } from './cart/cart.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { CartItem, CartService } from '../../services/cart/cart.service';
+import { twoDecimalPipe } from '../../pipes/two-deciomal.pipe';
 @Component({
   selector: 'app-order-create',
   standalone: true,
@@ -22,6 +24,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatListModule,
     CartComponent,
     MatTooltipModule,
+    twoDecimalPipe
   ],
   templateUrl: './order-create.component.html',
   styleUrl: './order-create.component.scss',
@@ -29,13 +32,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 export class OrderCreateComponent {
   categoryWithDishes!: DishCategory[];
   dishes!: Dish[];
-  cartItems: Dish[] = [];
-  sumOfCartItems = 0;
   selectedCategory!: DishCategory;
 
   constructor(
     private toastr: ToastrService,
     private dishCategoryService: DishCategoryService,
+    private cartService: CartService,
   ) {}
 
   ngOnInit() {
@@ -43,18 +45,16 @@ export class OrderCreateComponent {
   }
 
   switchSelectedCategory(category: DishCategory) {
-    console.log('Selected category:', category);
     this.dishes = category.dishes;
     this.selectedCategory = category;
   }
 
   addToCart(dish: Dish) {
-    this.cartItems.push(dish);
-    this.sumOfCartItems += dish.price;
+    this.cartService.addItem(dish);
   }
 
   getAllDishCategories() {
-    this.dishCategoryService.getAllDishCategories().subscribe({
+    this.dishCategoryService.getAllEnabledDishCategories().subscribe({
       next: (categories: DishCategory[]) => {
         this.categoryWithDishes = categories;
       },

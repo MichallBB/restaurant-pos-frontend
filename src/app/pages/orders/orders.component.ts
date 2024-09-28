@@ -25,9 +25,8 @@ export class OrdersComponent {
   constructor(private ordersService: OrdersService) {}
 
   ngOnInit() {
-    this.ordersService.getOrders().subscribe((orders) => {
+    this.ordersService.getOrdersByWaiter().subscribe((orders) => {
       this.orders = orders;
-      console.log('Orders:', orders);
     });
   }
 }

@@ -16,6 +16,7 @@ import { Title } from '@angular/platform-browser';
 import { Dish } from '../../../models/dish.model';
 import { ToastrService } from 'ngx-toastr';
 import { DialogEditDishComponent } from '../dialog-edit-dish/dialog-edit-dish.component';
+import { twoDecimalPipe } from '../../../pipes/two-deciomal.pipe';
 
 @Component({
   selector: 'app-dishes-table',
@@ -27,6 +28,7 @@ import { DialogEditDishComponent } from '../dialog-edit-dish/dialog-edit-dish.co
     MatInputModule,
     MatIcon,
     MatButtonModule,
+    twoDecimalPipe,
   ],
   templateUrl: './dishes-table.component.html',
   styleUrl: './dishes-table.component.scss',

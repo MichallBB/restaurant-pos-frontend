@@ -7,13 +7,11 @@ nav{
     border-right: 1px solid lightgray;
     
 }
-.nav-items-container{
-    width: 90%;
-}
+
 .nav-item{
     cursor: pointer;
-    margin: 10px 20px 10px 10px;
-    &>a{
+    margin: 10px 10px 10px 10px;
+    & > a{
         display: flex;
         align-items: center;
         color: black;
