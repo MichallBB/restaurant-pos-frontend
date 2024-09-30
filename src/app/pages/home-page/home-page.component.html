@@ -1,27 +1,27 @@
 <main>
   <header>
     <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
   </header>
 
   <div class="container">
     <mat-drawer-container>
-      <mat-drawer #drawer mode="over"  (closed)="isDrawerClosed = true" (opened)="isDrawerClosed = false"> 
-          <app-side-nav [drawer]="drawer" />
+      <mat-drawer
+        #drawer
+        mode="over"
+        (closed)="isDrawerClosed = true"
+        (opened)="isDrawerClosed = false"
+      >
+        <app-side-nav [drawer]="drawer" />
       </mat-drawer>
       <mat-drawer-content>
         <section class="content-container">
-          <router-outlet ></router-outlet>
+          <router-outlet></router-outlet>
         </section>
       </mat-drawer-content>
     </mat-drawer-container>
-
-
-
   </div>
 
-  <div class="bottom-navigation">
-  </div>
-
+  <div class="bottom-navigation"></div>
 </main>

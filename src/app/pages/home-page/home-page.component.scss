@@ -24,7 +24,8 @@ header {
 
   ::ng-deep {
     & > router-outlet ~ * {
-      display: block;
+      display: flex;
+      flex-direction: column;
       flex-grow: 1;
     }
   }

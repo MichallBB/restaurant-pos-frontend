@@ -30,6 +30,7 @@ export class OrdersChefComponent {
   ngOnInit() {
     this.ordersService.getAllOrders().subscribe((orders) => {
       this.orders = orders;
+      console.log('Orders:', this.orders);
     });
   }
 }

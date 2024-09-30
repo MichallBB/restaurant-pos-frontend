@@ -1,8 +1,16 @@
-<div class="order-card">
+<div
+  class="order-card"
+  [ngClass]="{
+    'green-border': (order.orderStartTime | convertToMinutes) <= 60 || undefined,
+    'orange-border': (order.orderStartTime | convertToMinutes) > 60,
+  }"
+>
   <div class="card-header">
     <div class="header-text">Zamówienie {{ order.id }}</div>
     <div class="header-timer">
-      <p>30 min temu</p>
+      @if (order.orderStartTime) {
+        <p>{{ order.orderStartTime | convertToMinutes }} min. temu</p>
+      }
 
       <mat-icon>timer</mat-icon>
     </div>
@@ -15,11 +23,12 @@
     <div class="dishes-list">
       @for (dish of order.dish; track $index) {
         <p>
-          <mat-checkbox (change)="changeProgress($event.checked)">{{
+          <mat-checkbox (change)="changeProgress($event.checked, dish.id)">{{
             dish.name
           }}</mat-checkbox>
         </p>
       }
     </div>
+    <button mat-raised-button color="primary">Oznacz jako gotowe</button>
   </div>
 </div>
