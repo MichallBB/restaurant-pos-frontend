@@ -35,7 +35,6 @@ export class CartService {
   }
 
   addItem(cartItem: Dish) {
-    console.log('cartItem', cartItem);
     const items = [...this.cartItems];
     const existingItem = items.find((item) => item.dish.id === cartItem.id);
     if (existingItem) {

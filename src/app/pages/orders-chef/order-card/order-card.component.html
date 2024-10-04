@@ -1,7 +1,8 @@
 <div
   class="order-card"
   [ngClass]="{
-    'green-border': (order.orderStartTime | convertToMinutes) <= 60 || undefined,
+    'green-border':
+      (order.orderStartTime | convertToMinutes) <= 60 || undefined,
     'orange-border': (order.orderStartTime | convertToMinutes) > 60,
   }"
 >
@@ -15,18 +16,23 @@
       <mat-icon>timer</mat-icon>
     </div>
   </div>
+  <div>Stolik: {{ order.tableNumber }}</div>
   <div class="card-body">
     <div class="progress">
       <p>Postęp: {{ progress }}%</p>
       <mat-progress-bar [value]="progress"></mat-progress-bar>
     </div>
     <div class="dishes-list">
-      @for (dish of order.dish; track $index) {
-        <p>
-          <mat-checkbox (change)="changeProgress($event.checked, dish.id)">{{
-            dish.name
-          }}</mat-checkbox>
-        </p>
+      @for (dishInOrder of order.dishes; track $index) {
+        @if (!dishInOrder.served) {
+          <p>
+            <mat-checkbox
+              [checked]="dishInOrder.cooked"
+              (change)="changeProgress($event.checked, dishInOrder.id)"
+              >{{ dishInOrder.dish.name }}</mat-checkbox
+            >
+          </p>
+        }
       }
     </div>
     <button mat-raised-button color="primary">Oznacz jako gotowe</button>

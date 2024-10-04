@@ -7,8 +7,12 @@ import { Order } from '../../models/order.model';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TimeDiffInMinutes } from '../../pipes/time-diff-in-minutes.pipe';
 import { CommonModule } from '@angular/common';
-import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MatCheckboxChange,
+  MatCheckboxModule,
+} from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
+import { DishesInOrderService } from '../../services/dishes-in-order/dishes-in-order.service';
 
 @Component({
   selector: 'app-orders',
@@ -22,7 +26,7 @@ import { MatIcon } from '@angular/material/icon';
     TimeDiffInMinutes,
     CommonModule,
     MatCheckboxModule,
-    MatIcon
+    MatIcon,
   ],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
@@ -30,11 +34,31 @@ import { MatIcon } from '@angular/material/icon';
 export class OrdersComponent {
   orders: Order[] = [];
 
-  constructor(private ordersService: OrdersService) {}
+  constructor(
+    private ordersService: OrdersService,
+    private dishInOrderService: DishesInOrderService,
+  ) {}
 
   ngOnInit() {
     this.ordersService.getOrdersByWaiter().subscribe((orders) => {
       this.orders = orders;
+      console.log('Orders:', this.orders);
+    });
+  }
+
+  toggleServed(change: boolean, dishId: number) {
+    this.dishInOrderService.toggleServed(dishId, change).subscribe({
+      next: (response) => {
+        console.log('response', response);
+        
+        this.orders.map((order) => {
+          order.dishes.map((dish) => {
+            if (dish.id === dishId) {
+              dish.served = change;
+            }
+          });
+        });
+      },
     });
   }
 }

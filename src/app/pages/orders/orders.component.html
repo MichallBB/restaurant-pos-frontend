@@ -29,7 +29,7 @@
               </mat-panel-title>
               <mat-panel-description class="bold-text">
                 <div
-                  class="elapsed-time "
+                  class="elapsed-time"
                   [ngClass]="{
                     'green-text':
                       (order.orderStartTime | convertToMinutes) <= 60 ||
@@ -55,9 +55,16 @@
                 0% wydane
               </mat-panel-description>
             </mat-expansion-panel-header>
-            @for (dish of order.dish; track $index) {
-              <p>
-                <mat-checkbox>{{ dish.name }}</mat-checkbox>
+            @for (dishInOrder of order.dishes; track $index) {
+              <p class="display-flex-row-center">
+                <mat-checkbox
+                  [checked]="dishInOrder.served"
+                  (change)="toggleServed($event.checked, dishInOrder.id)"
+                  >{{ dishInOrder.dish.name }}</mat-checkbox
+                >
+                @if (dishInOrder.cooked && dishInOrder.served === false) {
+                  <p class="display-flex-row-center" style="color: orange;"><mat-icon>done</mat-icon> Do wydania</p>
+                }
               </p>
             }
           </mat-expansion-panel>

@@ -8,6 +8,7 @@ import { Order } from '../../../models/order.model';
 import { TimeDiffInMinutes } from '../../../pipes/time-diff-in-minutes.pipe';
 import { CommonModule } from '@angular/common';
 import { Dish } from '../../../models/dish.model';
+import { DishesInOrderService } from '../../../services/dishes-in-order/dishes-in-order.service';
 
 @Component({
   selector: 'app-order-card',
@@ -30,22 +31,19 @@ export class OrderCardComponent implements OnInit {
   progress = 0;
   checked: { dishId: number, checked: boolean }[] = [];
 
-  constructor() {}
+  constructor(private dishInOrderService: DishesInOrderService) {}
 
   ngOnInit() {
     
-    this.order.dish.forEach((dish) => {
-      this.checked.push({ dishId: dish.id, checked: false });
-    });
-    localStorage.setItem('checked', JSON.stringify(this.checked));
   }
 
   changeProgress(change: boolean, dishId: number) {
-    if (change) {
-      this.progress += 100 / this.order.dish.length;
-    } else {
-      this.progress -= 100 / this.order.dish.length;
-    }
+    console.log('changeProgress', change, dishId);
+    this.dishInOrderService.toggleCooked(dishId, change).subscribe({
+      next: (response) => {
+        console.log('response', response);
+      }
+    });
 
   }
 }

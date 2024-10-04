@@ -5,6 +5,7 @@ main {
   display: flex !important;
   flex-direction: column !important;
   flex-grow: 1 !important;
+  overflow-y: hidden;
 }
 
 section {
@@ -62,4 +63,11 @@ mat-expansion-panel{
   main {
     margin: 0 0.3rem;
   }
+}
+
+.display-flex-row-center {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
 }

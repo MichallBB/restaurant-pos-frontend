@@ -6,12 +6,13 @@ import { Dish } from '../../models/dish.model';
 import { RestaurantTable } from '../../models/restaurant-table.model';
 import { DishWithCategoryId } from '../../models/dish-with-category-id.model';
 import { DishWithCategoryName } from '../../models/dish-with-category-name.model';
+import { DishInOrder } from '../../models/dish-in-order.model';
 
 export interface OrderRequest {
   id: number;
-  tableNumber: RestaurantTable;
+  table: RestaurantTable;
   waiterId: number;
-  dish: Dish[];
+  dishes: DishInOrder[];
   price: number;
   quantity: number;
   specialRequest: string;

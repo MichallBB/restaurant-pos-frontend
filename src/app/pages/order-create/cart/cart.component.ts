@@ -11,12 +11,16 @@ import { RestaurantTable } from '../../../models/restaurant-table.model';
 import { RestaurantTableService } from '../../../services/restaurant-table/restaurant-table.service';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { OrderRequest, OrdersService } from '../../../services/orders/orders.service';
+import {
+  OrderRequest,
+  OrdersService,
+} from '../../../services/orders/orders.service';
 import { CartItem, CartService } from '../../../services/cart/cart.service';
 import { CurrentUserService } from '../../../auth/current-user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DishWithCategoryName } from '../../../models/dish-with-category-name.model';
+import { DishInOrder } from '../../../models/dish-in-order.model';
 
 @Component({
   selector: 'app-cart',
@@ -29,7 +33,7 @@ import { DishWithCategoryName } from '../../../models/dish-with-category-name.mo
     MatSelectModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
@@ -49,7 +53,7 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private userService: CurrentUserService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -59,12 +63,18 @@ export class CartComponent implements OnInit {
     // Subscribe to cartItems and sumOfCartItems
     this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
-      this.quantityOfItems = items.reduce((acc, item) => acc + item.quantity, 0);
+      this.quantityOfItems = items.reduce(
+        (acc, item) => acc + item.quantity,
+        0,
+      );
     });
 
     this.cartService.sumOfCartItems$.subscribe((sum) => {
       this.sumOfCartItems = sum;
-      this.quantityOfItems = this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
+      this.quantityOfItems = this.cartItems.reduce(
+        (acc, item) => acc + item.quantity,
+        0,
+      );
     });
   }
 
@@ -75,7 +85,6 @@ export class CartComponent implements OnInit {
   removeItem(cartItem: Dish) {
     this.cartService.deleteOneDish(cartItem);
   }
-
 
   openConfirmOrderDialog() {
     const dialogRef: MatDialogRef<ConfirmOrderCartDialogComponent, boolean> =
@@ -91,22 +100,7 @@ export class CartComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        let orderRequest: OrderRequest = {} as OrderRequest;
-        orderRequest.id = -1;
-        orderRequest.tableNumber = this.tableSelected;
-        if (this.userService.currentUser){
-          orderRequest.waiterId = this.userService.currentUser.id;
-        }
-        orderRequest.dish = [];
-        this.cartItems.forEach((item) => {
-          let arrayOfDishes: Dish[] = Array(item.quantity).fill(item.dish);
-          orderRequest.dish = [...orderRequest.dish, ...arrayOfDishes];
-        });
-        orderRequest.price = this.sumOfCartItems;
-        orderRequest.quantity = 1;
-        orderRequest.specialRequest = '';
-        orderRequest.orderStartTime = new Date();
-        orderRequest.orderEndTime = new Date(Date.now() + 1000 * 60 * 60 * 48);
+        let orderRequest: OrderRequest = this.createOrderObject();
 
         this.ordersService.createOrder(orderRequest).subscribe({
           next: (order) => {
@@ -124,5 +118,35 @@ export class CartComponent implements OnInit {
       }
     });
   }
-}
 
+  createOrderObject(): OrderRequest {
+    let orderRequest: OrderRequest = {} as OrderRequest;
+    orderRequest.id = -1;
+    orderRequest.table = this.tableSelected;
+    if (this.userService.currentUser) {
+      orderRequest.waiterId = this.userService.currentUser.id;
+    }
+    orderRequest.dishes = [];
+
+    this.cartItems.forEach((item) => {
+      let arrayOfDishes: Dish[] = Array(item.quantity).fill(item.dish);
+
+      let arrayOfDishesInOrder: DishInOrder[] = arrayOfDishes.map((dish) => {
+        return {
+          id: -1,
+          served: false,
+          cooked: false,
+          dish: dish,
+        };
+      });
+      orderRequest.dishes = [... orderRequest.dishes, ...arrayOfDishesInOrder];
+    });
+
+    orderRequest.price = this.sumOfCartItems;
+    orderRequest.quantity = 1;
+    orderRequest.specialRequest = '';
+    orderRequest.orderStartTime = new Date();
+    orderRequest.orderEndTime = new Date(Date.now() + 1000 * 60 * 60 * 48);
+    return orderRequest;
+  }
+}
