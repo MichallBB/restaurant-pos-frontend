@@ -30,7 +30,7 @@
                     </div>
                   </mat-card-title>
                   <mat-card-subtitle matTooltip="{{dish.description}}">
-                    <div class="dish-price">{{dish.price | twoDecimal}} zł</div>
+                    <div class="dish-price">{{dish.price | number: '1.2-2'}} zł</div>
                       {{ dish.description }}
                   </mat-card-subtitle>
                 </mat-card-header>

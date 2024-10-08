@@ -19,7 +19,7 @@
   <div>Stolik: {{ order.tableNumber }}</div>
   <div class="card-body">
     <div class="progress">
-      <p>Postęp: {{ progress }}%</p>
+      <p>Postęp: {{ progress | number: '1.0-0' }}%</p>
       <mat-progress-bar [value]="progress"></mat-progress-bar>
     </div>
     <div class="dishes-list">
@@ -32,9 +32,17 @@
               >{{ dishInOrder.dish.name }}</mat-checkbox
             >
           </p>
+        } @else {
+          <p>
+            <mat-checkbox
+            disabled="true"
+              [checked]="dishInOrder.cooked"
+              >{{ dishInOrder.dish.name }}</mat-checkbox
+            >
+          </p>
         }
       }
     </div>
-    <button mat-raised-button color="primary">Oznacz jako gotowe</button>
+    <!-- <button mat-raised-button color="primary">Oznacz jako gotowe</button> -->
   </div>
 </div>

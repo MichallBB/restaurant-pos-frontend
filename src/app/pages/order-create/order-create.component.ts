@@ -12,7 +12,7 @@ import {MatListModule} from '@angular/material/list';
 import { CartComponent } from './cart/cart.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { CartItem, CartService } from '../../services/cart/cart.service';
-import { twoDecimalPipe } from '../../pipes/two-deciomal.pipe';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-order-create',
   standalone: true,
@@ -24,7 +24,7 @@ import { twoDecimalPipe } from '../../pipes/two-deciomal.pipe';
     MatListModule,
     CartComponent,
     MatTooltipModule,
-    twoDecimalPipe
+    CommonModule
   ],
   templateUrl: './order-create.component.html',
   styleUrl: './order-create.component.scss',

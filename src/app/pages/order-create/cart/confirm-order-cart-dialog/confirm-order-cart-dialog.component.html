@@ -6,7 +6,7 @@
       <div class="cart-item">
         <div class="cart-item__name">{{ cartItem.dish.name }}</div>
         <div class="cart-item__price">
-          {{ cartItem.dish.price | twoDecimal }} zł
+          {{ cartItem.dish.price | number: '1.2-2' }} zł
         </div>
 
         <div class="cart-item__quantity">
@@ -20,7 +20,7 @@
 
   <div class="cart__summary">
     <div class="cart__summary__total">
-      <span>Suma: {{ sumOfCartItems | twoDecimal }} zł</span>
+      <span>Suma: {{ sumOfCartItems | number: '1.2-2' }} zł</span>
       <span>Stolik: {{ selectedTable }}</span>
     </div>
   </div>

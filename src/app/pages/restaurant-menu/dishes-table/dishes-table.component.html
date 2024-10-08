@@ -30,7 +30,7 @@
 
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef>Cena</th>
-      <td mat-cell *matCellDef="let element">{{ element.price | twoDecimal }} zł</td>
+      <td mat-cell *matCellDef="let element">{{ element.price | number: '1.2-2' }} zł</td>
     </ng-container>
 
     <ng-container matColumnDef="active">

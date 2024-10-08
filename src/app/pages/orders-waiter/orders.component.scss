@@ -36,28 +36,11 @@ header {
     margin: 0 0 0.6rem 0;
   }
 }
-mat-expansion-panel{
-  border: 1px solid #e0e0e0;
-}
-
-.orange-text {
-  color: #ff7b00;
-}
-.green-text {
-  color: #00b900;
-}
 
 .bold-text {
   font-weight: bold;
 }
-.elapsed-time {
-  width: 200px;
-  display: flex;
-  align-items: center;
-  mat-icon{
-    margin-right: 5px;
-  }
-}
+
 
 @media (max-width: 768px) {
   main {
@@ -65,9 +48,3 @@ mat-expansion-panel{
   }
 }
 
-.display-flex-row-center {
-  display: flex; 
-  flex-direction: row;
-  align-items: center;
-  height: 52px;
-}

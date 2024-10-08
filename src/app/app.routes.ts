@@ -4,7 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthGuard } from './auth/auth.guard';
 import { RestaurantMenuComponent } from './pages/restaurant-menu/restaurant-menu.component';
-import { OrdersComponent } from './pages/orders/orders.component';
+import { OrdersComponent } from './pages/orders-waiter/orders.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserSettingsPageComponent } from './pages/user-settings-page/user-settings-page.component';

@@ -1,0 +1,51 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class="order-number" style="width: 170px">
+          <span class="bold-text"> Numer zamówienia: </span>
+          {{ order.id }}
+        </div>
+      </mat-panel-title>
+      <mat-panel-description class="bold-text">
+        <div
+          class="elapsed-time"
+          [ngClass]="{
+            'green-text':
+              (order.orderStartTime | convertToMinutes) <= 60 || undefined,
+            'orange-text': (order.orderStartTime | convertToMinutes) > 60,
+          }"
+        >
+          <mat-icon>timer</mat-icon>
+          <span class="bold-text" style="margin-right: 4px">
+            {{ order.orderStartTime | convertToMinutes }}
+          </span>
+          min. temu
+        </div>
+
+        Stolik: {{ order.tableNumber }}
+
+        <mat-progress-bar
+          style="width: 150px; margin: 0 25px"
+          mode="determinate"
+          [value]="progress"
+        ></mat-progress-bar>
+        {{ progress | number: "1.0-0" }}% wydane
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    @for (dishInOrder of order.dishes; track $index) {
+      <p class="display-flex-row-center">
+        <mat-checkbox
+          [checked]="dishInOrder.served"
+          (change)="toggleServed($event.checked, dishInOrder.id)"
+          >{{ dishInOrder.dish.name }}</mat-checkbox
+        >
+        @if (dishInOrder.cooked && dishInOrder.served === false) {
+          <p class="display-flex-row-center" style="color: orange">
+            <mat-icon>done</mat-icon> Do wydania
+          </p>
+        }
+      </p>
+    }
+  </mat-expansion-panel>
+</mat-accordion>

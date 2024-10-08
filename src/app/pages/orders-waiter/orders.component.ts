@@ -13,6 +13,7 @@ import {
 } from '@angular/material/checkbox';
 import { MatIcon } from '@angular/material/icon';
 import { DishesInOrderService } from '../../services/dishes-in-order/dishes-in-order.service';
+import { OrderPanelComponent } from "./order-panel/order-panel.component";
 
 @Component({
   selector: 'app-orders',
@@ -27,7 +28,8 @@ import { DishesInOrderService } from '../../services/dishes-in-order/dishes-in-o
     CommonModule,
     MatCheckboxModule,
     MatIcon,
-  ],
+    OrderPanelComponent
+],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
 })
@@ -36,7 +38,6 @@ export class OrdersComponent {
 
   constructor(
     private ordersService: OrdersService,
-    private dishInOrderService: DishesInOrderService,
   ) {}
 
   ngOnInit() {
@@ -46,19 +47,5 @@ export class OrdersComponent {
     });
   }
 
-  toggleServed(change: boolean, dishId: number) {
-    this.dishInOrderService.toggleServed(dishId, change).subscribe({
-      next: (response) => {
-        console.log('response', response);
-        
-        this.orders.map((order) => {
-          order.dishes.map((dish) => {
-            if (dish.id === dishId) {
-              dish.served = change;
-            }
-          });
-        });
-      },
-    });
-  }
+
 }

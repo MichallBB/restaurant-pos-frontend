@@ -2,7 +2,6 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Dish } from '../../../models/dish.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { twoDecimalPipe } from '../../../pipes/two-deciomal.pipe';
 import { ConfirmOrderCartDialogComponent } from './confirm-order-cart-dialog/confirm-order-cart-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DishWithCategoryName } from '../../../models/dish-with-category-name.model';
 import { DishInOrder } from '../../../models/dish-in-order.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
@@ -28,12 +28,12 @@ import { DishInOrder } from '../../../models/dish-in-order.model';
   imports: [
     MatIcon,
     MatButtonModule,
-    twoDecimalPipe,
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+.orange-text {
+  color: #ff7b00;
+}
+.green-text {
+  color: #00b900;
+}
+mat-expansion-panel{
+  border: 1px solid #e0e0e0;
+}
+.display-flex-row-center {
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  height: 52px;
+}
+
+.elapsed-time {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  mat-icon{
+    margin-right: 5px;
+  }
+}

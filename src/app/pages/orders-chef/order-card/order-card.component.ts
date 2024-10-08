@@ -21,7 +21,7 @@ import { DishesInOrderService } from '../../../services/dishes-in-order/dishes-i
     MatButtonModule,
     MatIconModule,
     TimeDiffInMinutes,
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './order-card.component.html',
   styleUrl: './order-card.component.scss',
@@ -34,11 +34,13 @@ export class OrderCardComponent implements OnInit {
   constructor(private dishInOrderService: DishesInOrderService) {}
 
   ngOnInit() {
-    
+    let dishes = this.order.dishes;
+    this.progress = dishes.filter((dish) => dish.cooked).length / dishes.length * 100;
   }
 
   changeProgress(change: boolean, dishId: number) {
     console.log('changeProgress', change, dishId);
+    this.progress = change ? this.progress + 100 / this.order.dishes.length : this.progress - 100 / this.order.dishes.length;
     this.dishInOrderService.toggleCooked(dishId, change).subscribe({
       next: (response) => {
         console.log('response', response);
