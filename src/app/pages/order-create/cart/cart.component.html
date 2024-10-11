@@ -9,7 +9,7 @@
         <div class="cart-item">
           <div class="cart-item__name">{{ cartItem.dish.name }}</div>
           <div class="cart-item__price">
-            {{ cartItem.dish.price | number: '1.2-2' }} zł
+            {{ cartItem.dish.price | number: "1.2-2" }} zł
           </div>
 
           <div class="cart-item__quantity">
@@ -41,18 +41,18 @@
   <div class="cart__summary">
     <div class="cart__summary__total">
       <span>Ilość {{ quantityOfItems }}</span>
-      <span>Suma: {{ sumOfCartItems | number: '1.2-2' }} zł</span>
-      <div class="table-selection">
-
-        <mat-form-field>
-          <mat-label>Wybierz stolik</mat-label>
-          <mat-select [(value)]="tableSelected">
-            @for (table of tables; track $index) {
-              <mat-option [value]="table">{{table.tableNumber}}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      </div>
+      <span>Suma: {{ sumOfCartItems | number: "1.2-2" }} zł</span>
+      <div class="select-button-field">
+        <div class="table-selection">
+          <mat-form-field>
+            <mat-label>Wybierz stolik</mat-label>
+            <mat-select [(value)]="tableSelected">
+              @for (table of tables; track $index) {
+                <mat-option [value]="table">{{ table.tableNumber }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
         <button
           (click)="openConfirmOrderDialog()"
           mat-raised-button
@@ -61,6 +61,8 @@
         >
           Zamów
         </button>
+      </div>
+
     </div>
   </div>
 </div>

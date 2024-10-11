@@ -20,8 +20,7 @@ mat-dialog-content {
     align-items: center;
 
     .cart-item__name {
-      width: 100px;
-      max-width: 100px;
+      width: 200px;
       text-align: left;
       white-space: nowrap;
       overflow: hidden;
@@ -36,4 +35,14 @@ mat-dialog-content {
   font-weight: 500;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 550px) {
+  .cart__list {
+    .cart-item {
+      .cart-item__name {
+        width: 100px;
+      }
+    }
+  }
 }

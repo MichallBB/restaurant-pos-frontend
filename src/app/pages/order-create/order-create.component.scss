@@ -9,6 +9,7 @@ main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  overflow-y: hidden;
 }
 
 section {
@@ -16,42 +17,54 @@ section {
   flex-direction: column;
   background-color: white;
   flex-grow: 1;
+  overflow-y: hidden;
 }
 
 .new-order__container {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
   width: 100%;
   height: 100%;
 
   .dishes__container {
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+
+    .categories-button-group {
+      margin-top: 1rem;
+      min-height: 70px;
+      display: flex;
+      flex-direction: row;
+      overflow-y: auto;
+
+      & > button {
+        width: 80px;
+        height: 50px;
+        min-width: 110px;
+        margin-right: 15px;
+      }
+    }
+
+    .dishes-list__container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      overflow-y: auto;
+      flex-grow: 1;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      height: 300px;
+    }
   }
+
   .cart__container {
     border-left: #e0e0e0 1px solid;
+    overflow: hidden;
   }
-}
-.categories-button-group {
-  margin-top: 1rem;
-  min-height: 70px;
-
-  display: flex;
-  flex-direction: row;
-  overflow-y: auto;
-
-  & > button {
-    width: 80px;
-    height: 50px;
-    min-width: 110px;
-    margin-right: 15px;
-  }
-}
-.dishes-list__container {
-  display: flex;
-  flex-wrap: wrap;
-  overflow-x: auto;
-  gap: 1rem;
 }
 
 mat-card {
@@ -97,19 +110,29 @@ mat-card {
     align-content: center;
   }
   .dishes__container {
-    width: 100%;
+    padding: 0 0 0 0;
   }
   .categories-button-group {
     max-width: 80vw;
+    margin-left: 1rem;
   }
   .dishes-list__container {
   }
-  .cart__container {
+  .new-order__container .cart__container{
     border-left: none;
+  }
+  .cart__container {
     border-top: 1px solid #e0e0e0;
   }
   .card-header {
     max-width: 20vw;
     font-size: 0.9rem;
+  }
+  mat-card{
+    width: calc((100% - 2rem) / 2);
+  }
+  mat-card-subtitle{
+    max-height: 47px;
+    overflow: hidden;
   }
 }

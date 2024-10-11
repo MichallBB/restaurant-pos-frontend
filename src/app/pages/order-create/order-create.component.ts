@@ -57,6 +57,8 @@ export class OrderCreateComponent {
     this.dishCategoryService.getAllEnabledDishCategories().subscribe({
       next: (categories: DishCategory[]) => {
         this.categoryWithDishes = categories;
+        this.selectedCategory = categories[0];
+        this.dishes = categories[0].dishes;
       },
       error: (error) => {
         console.error(error);

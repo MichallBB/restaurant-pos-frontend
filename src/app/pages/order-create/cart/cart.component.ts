@@ -39,7 +39,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = [];
+  @Input() cartItems: CartItem[] = [];
   sumOfCartItems = 0;
   quantityOfItems = 0;
 
@@ -94,7 +94,7 @@ export class CartComponent implements OnInit {
           sumOfCartItems: this.sumOfCartItems,
           selectedTable: this.tableSelected.tableNumber,
         },
-        width: '350px',
+        width: '500px',
         height: '400px',
       });
 
