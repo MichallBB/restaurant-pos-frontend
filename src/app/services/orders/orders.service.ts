@@ -36,6 +36,12 @@ export class OrdersService {
     return this.http.get<Order[]>('http://localhost:8080/api/order/getOrders');
   }
 
+  getAllActiveOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(
+      'http://localhost:8080/api/order/getAllActiveOrders',
+    );
+  }
+
   createOrder(order: OrderRequest): Observable<OrderRequest> {
     return this.http.post<OrderRequest>('http://localhost:8080/api/order/createOrder', order);
   }

@@ -1,0 +1,15 @@
+@if (!dishInOrder.served) {
+  <p>
+    <mat-checkbox
+      [checked]="dishInOrder.cooked"
+      (change)="changeProgress($event.checked)"
+      >{{ dishInOrder.dish.name }}</mat-checkbox
+    >
+  </p>
+} @else {
+  <p>
+    <mat-checkbox disabled="true" [checked]="dishInOrder.cooked">{{
+      dishInOrder.dish.name
+    }}</mat-checkbox>
+  </p>
+}

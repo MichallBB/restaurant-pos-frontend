@@ -4,7 +4,9 @@ import { SideNavComponent } from "../../shared/side-nav/side-nav.component";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
+import { NotificationMenuComponent } from "./notification-menu/notification-menu.component";
 @Component({
   selector: 'app-home-page',
   standalone: true,
@@ -14,6 +16,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
+    MatBadgeModule,
+    MatMenuModule,
+    NotificationMenuComponent
 ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'

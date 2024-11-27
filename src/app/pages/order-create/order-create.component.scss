@@ -104,6 +104,9 @@ mat-card {
 }
 
 @media (max-width: 950px) {
+  main{
+    margin: 0 0 0 0;
+  }
   .new-order__container {
     display: flex;
     flex-direction: column;
@@ -116,8 +119,7 @@ mat-card {
     max-width: 80vw;
     margin-left: 1rem;
   }
-  .dishes-list__container {
-  }
+
   .new-order__container .cart__container{
     border-left: none;
   }
@@ -128,11 +130,30 @@ mat-card {
     max-width: 20vw;
     font-size: 0.9rem;
   }
-  mat-card{
-    width: calc((100% - 2rem) / 2);
-  }
+
   mat-card-subtitle{
     max-height: 47px;
     overflow: hidden;
   }
 }
+
+
+@media (max-width: 633px) {
+  mat-card{
+    width: calc((100% - 2rem) / 2);
+  }
+
+}
+
+
+@media (max-width: 370px) {
+  mat-card{
+    width: calc((100% - 2rem) / 1);
+  }
+  .card-header {
+
+    max-width: 60vw;
+    font-size: 0.9rem;
+  }
+}
+

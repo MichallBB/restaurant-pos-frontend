@@ -1,0 +1,12 @@
+<p class="display-flex-row-center">
+    <mat-checkbox
+      [checked]="dish.served"
+      (change)="toggleServed($event.checked)"
+      >{{ dish.dish.name }}</mat-checkbox
+    >
+    @if (dish.cooked && dish.served === false) {
+      <p class="display-flex-row-center" style="color: orange">
+        <mat-icon>done</mat-icon> Do wydania
+      </p>
+    }
+  </p>

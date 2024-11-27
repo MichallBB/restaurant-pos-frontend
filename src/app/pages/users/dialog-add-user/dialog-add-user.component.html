@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Nowe danie</h2>
+<form [formGroup]="newUserFormGroup" (ngSubmit)="addNewUser()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Imie i nazwisko</mat-label>
+      <input required matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field class="category-control">
+      <mat-label>Rola</mat-label>
+      <mat-select required formControlName="role">
+        <mat-option value="ADMIN">Admin</mat-option>
+        <mat-option value="CHEF">Kelner</mat-option>
+        <mat-option value="WAITER">Kucharz</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      [disabled]="newUserFormGroup.invalid"
+    >
+      Potwierdź
+    </button>
+  </mat-dialog-actions>
+</form>

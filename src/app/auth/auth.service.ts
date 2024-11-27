@@ -57,11 +57,20 @@ export class AuthService {
       switchMap(() => [true]),
     );
   }
+
+  register(acc: registerObj): Observable<string> {
+    return this.http.post<string>('http://localhost:8080/api/auth/register', acc);
+  }
 }
 
 export interface LoginObj {
   id: number;
   pinCode: string;
+}
+
+export interface registerObj {
+  name: string;
+  role: string;
 }
 
 export interface AuthResponse {

@@ -12,7 +12,10 @@ main {
   height: 100% - $header-height;
 }
 header {
+  display: flex;
   height: $header-height;
+  justify-content: space-between;
+  margin-right: 15px;
 }
 
 .content-container {
@@ -38,4 +41,3 @@ mat-drawer-container{
 mat-drawer {
   width: 200px;
 }
-

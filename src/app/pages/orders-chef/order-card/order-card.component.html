@@ -19,12 +19,18 @@
   <div>Stolik: {{ order.tableNumber }}</div>
   <div class="card-body">
     <div class="progress">
-      <p>Postęp: {{ progress | number: '1.0-0' }}%</p>
+      <p>Postęp: {{ progress | number: "1.0-0" }}%</p>
       <mat-progress-bar [value]="progress"></mat-progress-bar>
     </div>
     <div class="dishes-list">
       @for (dishInOrder of order.dishes; track $index) {
-        @if (!dishInOrder.served) {
+        <app-chef-list-dish-in-order-item
+          [dishInOrder]="dishInOrder"
+          [dishIdChanged]="dishIdChanged"
+          (cookedToggled)="onCookedToggle($event)"
+        >
+        </app-chef-list-dish-in-order-item>
+        <!-- @if (!dishInOrder.served) {
           <p>
             <mat-checkbox
               [checked]="dishInOrder.cooked"
@@ -40,7 +46,7 @@
               >{{ dishInOrder.dish.name }}</mat-checkbox
             >
           </p>
-        }
+        } -->
       }
     </div>
     <!-- <button mat-raised-button color="primary">Oznacz jako gotowe</button> -->

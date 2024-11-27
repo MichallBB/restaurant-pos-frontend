@@ -104,7 +104,7 @@ export class CartComponent implements OnInit {
 
         this.ordersService.createOrder(orderRequest).subscribe({
           next: (order) => {
-            this.toastr.success('Order created successfully');
+            this.toastr.success('Zamówienie zostało złożone pomyślnie');
             console.log(orderRequest);
             this.cartService.cartItems = [];
             setTimeout(() => {
@@ -112,7 +112,7 @@ export class CartComponent implements OnInit {
             }, 1000);
           },
           error: (error) => {
-            this.toastr.error('Error while creating order');
+            this.toastr.error('Błąd podczas składania zamówienia');
           },
         });
       }

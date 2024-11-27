@@ -20,7 +20,17 @@ export class EmployeeAccountService {
     return this.http.get<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/${id}`);
   }
 
+  getAllSortedByRole(): Observable<UserObj[]> {
+    return this.http.get<UserObj[]>(`http://localhost:8080/api/employeeAccount/allSortedByRole`);
+  }
+
   
+}
+
+export interface UserObj{
+  id: number;
+  name: string;
+  role: string;
 }
 
 export interface EmployeesResponse {

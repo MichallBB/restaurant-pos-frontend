@@ -34,18 +34,12 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     @for (dishInOrder of order.dishes; track $index) {
-      <p class="display-flex-row-center">
-        <mat-checkbox
-          [checked]="dishInOrder.served"
-          (change)="toggleServed($event.checked, dishInOrder.id)"
-          >{{ dishInOrder.dish.name }}</mat-checkbox
-        >
-        @if (dishInOrder.cooked && dishInOrder.served === false) {
-          <p class="display-flex-row-center" style="color: orange">
-            <mat-icon>done</mat-icon> Do wydania
-          </p>
-        }
-      </p>
+      <app-dish-in-order-item
+        [dish]="dishInOrder"
+        [dishChangedId]="dishChanged"
+        (servedToggled)="onServedToggled($event)"
+      ></app-dish-in-order-item>
     }
+    <button mat-stroked-button color="primary" (click)="endTheOrder()">Zakończ zamówienie</button>
   </mat-expansion-panel>
 </mat-accordion>

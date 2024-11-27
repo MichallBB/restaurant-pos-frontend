@@ -3,14 +3,17 @@
   <section class="orders-containner">
     <header>
       <div class="container-header">
-        <h3>Zamówienia do realizacji: {{orders.length}}</h3>
+        <h3>Zamówienia do realizacji: {{ orders.length }}</h3>
       </div>
     </header>
 
     <div class="list-container">
       <div class="cards-row-container">
         @for (order of orders; track $index) {
-          <app-order-card [order]="order"></app-order-card>
+          <app-order-card
+            [dishIdChanged]="dishChanged"
+            [order]="order"
+          ></app-order-card>
         }
       </div>
     </div>

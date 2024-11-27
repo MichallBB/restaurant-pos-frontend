@@ -1,4 +1,15 @@
 <main>
   <h2>Rezerwacje</h2>
-  <section class="reservations-containner"></section>
+  <section class="reservations-containner">
+    <div>
+      <input [(ngModel)]="message" placeholder="Enter your message"/>
+      
+    </div>
+    <div>
+      <h3>Messages:</h3>
+      <ul>
+        <li *ngFor="let msg of messages">{{ msg }}</li>
+      </ul>
+    </div>
+  </section>
 </main>

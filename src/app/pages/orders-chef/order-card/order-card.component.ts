@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -9,6 +16,16 @@ import { TimeDiffInMinutes } from '../../../pipes/time-diff-in-minutes.pipe';
 import { CommonModule } from '@angular/common';
 import { Dish } from '../../../models/dish.model';
 import { DishesInOrderService } from '../../../services/dishes-in-order/dishes-in-order.service';
+import {
+  catchError,
+  debounceTime,
+  Subject,
+  Subscription,
+  switchMap,
+  throwError,
+} from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { ChefListDishInOrderItemComponent } from './chef-list-dish-in-order-item/chef-list-dish-in-order-item.component';
 
 @Component({
   selector: 'app-order-card',
@@ -21,31 +38,36 @@ import { DishesInOrderService } from '../../../services/dishes-in-order/dishes-i
     MatButtonModule,
     MatIconModule,
     TimeDiffInMinutes,
-    CommonModule
+    CommonModule,
+    ChefListDishInOrderItemComponent,
   ],
   templateUrl: './order-card.component.html',
   styleUrl: './order-card.component.scss',
 })
 export class OrderCardComponent implements OnInit {
   @Input() order!: Order;
+  @Input() dishIdChanged!: number;
   progress = 0;
-  checked: { dishId: number, checked: boolean }[] = [];
 
   constructor(private dishInOrderService: DishesInOrderService) {}
 
   ngOnInit() {
     let dishes = this.order.dishes;
-    this.progress = dishes.filter((dish) => dish.cooked).length / dishes.length * 100;
+    this.progress =
+      (dishes.filter((dish) => dish.cooked).length / dishes.length) * 100;
   }
 
-  changeProgress(change: boolean, dishId: number) {
-    console.log('changeProgress', change, dishId);
-    this.progress = change ? this.progress + 100 / this.order.dishes.length : this.progress - 100 / this.order.dishes.length;
-    this.dishInOrderService.toggleCooked(dishId, change).subscribe({
-      next: (response) => {
-        console.log('response', response);
+  onCookedToggle(event: { dishId: number; cooked: boolean }) {
+    console.log('Dish cooked status changed:', event);
+
+    this.order.dishes.map((dish) => {
+      if (dish.id === event.dishId) {
+        dish.cooked = event.cooked;
       }
     });
-
+    this.progress =
+      (this.order.dishes.filter((dish) => dish.cooked).length /
+        this.order.dishes.length) *
+      100;
   }
 }

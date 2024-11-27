@@ -17,9 +17,20 @@
     </header>
 
     <div class="list-container">
-      @for (order of orders; track $index) {
-        <app-order-panel [order]="order"></app-order-panel>
+      @if (!ordersLoaded) {
+        <mat-spinner>
+          
+        </mat-spinner>
+      }@else {
+        @for (order of orders; track $index) {
+          <app-order-panel
+            [dishChanged]="dishChanged"
+            [order]="order"
+            (endOrder)="getOrders()"
+          ></app-order-panel>
+        }
       }
+
     </div>
   </section>
 </main>

@@ -11,6 +11,5 @@ export interface Order {
   specialRequest: string;
   orderStartTime: Date;
   orderEndTime: Date;
-  served: boolean;
-  paid: boolean;
+  orderEnded: boolean;
 }
