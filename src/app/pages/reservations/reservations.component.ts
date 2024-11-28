@@ -12,19 +12,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './reservations.component.scss'
 })
 export class ReservationsComponent {
-  messages: string[] = [];
-  message: string = '';
 
-  constructor(private webSocketService: CookedWebSocketService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.webSocketService.getMessages().subscribe((message: string) => {
-      this.messages.push(message);
-    });
+
   }
 
 
   ngOnDestroy(): void {
-    this.webSocketService.disconnect();
   }
 }
