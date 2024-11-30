@@ -21,7 +21,7 @@ export const routes: Routes = [
         { path: 'rezerwacje', component: ReservationsComponent, canActivate: [AuthGuard]},
         { path: 'uzytkownicy', component: UsersComponent, canActivate: [AuthGuard]},
         { path: 'ustawienia', component: UserSettingsPageComponent, canActivate: [AuthGuard]},
-        { path: 'zamowienia-kuchni', component: OrdersChefComponent, canActivate: [AuthGuard]},
+        { path: 'zamowienia-kuchni', component: OrdersChefComponent, canActivate: [AuthGuard]}
     ]},
     { path: '**', redirectTo: 'strona-domowa'},
 ];
