@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Dodaj nowy stolik</h2>
+<form [formGroup]="newTableFormGroup" (ngSubmit)="addNewTable()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Numer stolika</mat-label>
+      <input matInput formControlName="tableNumber" />
+    </mat-form-field>
+    @if (newTableFormGroup.get('tableNumber')?.hasError('incorrect')) {
+      <mat-error>Numer stolika jest już zajęty</mat-error>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      [disabled]="newTableFormGroup.invalid || !isAvailable"
+    >
+      Potwierdź
+    </button>
+  </mat-dialog-actions>
+</form>

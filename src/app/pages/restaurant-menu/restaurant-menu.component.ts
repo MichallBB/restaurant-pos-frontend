@@ -29,24 +29,12 @@ export class RestaurantMenuComponent {
       width: '700px',
       height: '500px',
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`The dialog was closed + ${result}`);
-      if (result !== undefined) {
-      }
-    });
   }
 
   openAddDishDialog(): void {
     const dialogRef = this.dialog.open(DialogAddDishComponent, {
       width: '700px',
       height: '500px',
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`The dialog was closed + ${result}`);
-      if (result !== undefined) {
-      }
     });
   }
 }

@@ -111,6 +111,7 @@ export class DishesTableComponent {
   }
 
   editDish(dish: Dish) {
+    console.log(dish);
     const dialogRef = this.dialog.open(DialogEditDishComponent, {
       data: dish,
     });

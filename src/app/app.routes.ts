@@ -10,6 +10,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { UserSettingsPageComponent } from './pages/user-settings-page/user-settings-page.component';
 import { OrderCreateComponent } from './pages/order-create/order-create.component';
 import { OrdersChefComponent } from './pages/orders-chef/orders-chef.component';
+import { TablesComponent } from './pages/tables/tables.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -18,7 +19,7 @@ export const routes: Routes = [
         { path: 'menu', component: RestaurantMenuComponent, canActivate: [AuthGuard] },
         { path: 'zamowienia', component: OrdersComponent, canActivate: [AuthGuard]},
         { path: 'zamowienia/nowe-zamowienie', component: OrderCreateComponent, canActivate: [AuthGuard] },
-        { path: 'rezerwacje', component: ReservationsComponent, canActivate: [AuthGuard]},
+        { path: 'stoliki', component: TablesComponent, canActivate: [AuthGuard]},
         { path: 'uzytkownicy', component: UsersComponent, canActivate: [AuthGuard]},
         { path: 'ustawienia', component: UserSettingsPageComponent, canActivate: [AuthGuard]},
         { path: 'zamowienia-kuchni', component: OrdersChefComponent, canActivate: [AuthGuard]}

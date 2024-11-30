@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+main{
+  // top right bottom left
+  margin: 0 3% 3% 3%;
+  color: rgb(78, 78, 78);
+}
+
+section{
+  padding: 0 15px 15px 15px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  height: 82vh;
+}
+.tables-section{
+  width: 100%;
+}
+
+.tables-section__header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 15px;
+  .buttons-in-header{
+      button{
+          margin-left: 15px;
+      }
+  }
+}

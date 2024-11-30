@@ -1,28 +1,39 @@
 <h2 mat-dialog-title> Edytuj danie</h2>
 <mat-dialog-content>
-    <!-- <form [formGroup]="formGroup">
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input [value]="data.name" formControlName="name" matInput required />
-        </mat-form-field>
-    
-        <mat-form-field>
-          <mat-label>Weight</mat-label>
-          <input
-            class="no-arrows"
-            type="number"
-            [value]="data.weight"
-            formControlName="weight"
-            matInput
-            required
-          />
-        </mat-form-field>
-    
-        <mat-form-field>
-          <mat-label>Symbol</mat-label>
-          <input [value]="data.symbol" formControlName="symbol" matInput required />
-        </mat-form-field>
-      </form> -->
+  <form [formGroup]="editDishFormGroup" (ngSubmit)="editDish()">
+    <mat-form-field>
+      <mat-label>Nazwa dania</mat-label>
+      <input required matInput formControlName="name" />
+    </mat-form-field>
+  
+    <mat-form-field class="category-control">
+      <mat-label>Kategoria</mat-label>
+      <mat-select required formControlName="category">
+        @for (category of categories; track $index) {
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field floatLabel="always">
+      <mat-label>Cena</mat-label>
+      <input
+        formControlName="price"
+        required
+        matInput
+        type="number"
+        placeholder="0"
+      />
+      <span style="margin-left: 5px" matTextSuffix>zł</span>
+    </mat-form-field>
+    <div>
+      <mat-form-field>
+        <mat-label>Opis</mat-label>
+        <input formControlName="description" matInput />
+      </mat-form-field>
+    </div>
+  </form>
+
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Nie</button>

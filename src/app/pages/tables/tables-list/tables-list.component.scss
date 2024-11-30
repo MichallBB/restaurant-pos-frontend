@@ -17,15 +17,17 @@
     width: 300px;
   }
 }
+.description{
+  width: 10rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 td {
   & > button:first-of-type {
     margin-right: 10px;
   }
-}
-
-mat-table{
-  width: 100%;
 }
 
 .no-data {
@@ -35,12 +37,15 @@ mat-table{
   height: 25vh;
 }
 
-.mat-column-name {
-  width: 50%;
-}
-.mat-column-role {
-  width: 50%;
+.mat-column-tableNumber {
+  width: 100%;
 }
 .mat-column-actions {
-  min-width: 150px !important;
+  min-width: 250px !important;
+}
+
+@media (max-width: 600px) {
+  .mat-column-actions {
+    min-width: 150px !important;
+  }
 }

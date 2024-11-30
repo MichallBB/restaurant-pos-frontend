@@ -3,5 +3,5 @@ export interface RestaurantTable {
     tableNumber: string;
     isOccupied: boolean;
     isReserved: boolean;
-    reserrvationTime: Date;
+    reserrvationTime: Date | null;
 }

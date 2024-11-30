@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Edytuj stolik</h2>
+<form [formGroup]="editTableFormGroup" (ngSubmit)="editTable()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Numer stolika</mat-label>
+      <input matInput formControlName="tableNumber" />
+    </mat-form-field>
+    @if (editTableFormGroup.get('tableNumber')?.hasError('incorrect')) {
+      <mat-error>Numer stolika jest już zajęty</mat-error>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Anuluj</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [mat-dialog-close]="true"
+      [disabled]="editTableFormGroup.invalid || !isAvailable"
+    >
+      Potwierdź
+    </button>
+  </mat-dialog-actions>
+</form>

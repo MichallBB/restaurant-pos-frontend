@@ -4,7 +4,7 @@
     <div class="new-order__container">
       <div class="dishes__container">
         @if (categoryWithDishes?.length === 0) {
-          <div style="font-size: large; font-weight: 500;margin-top: 20px;">
+          <div style="font-size: large; font-weight: 500; margin-top: 20px">
             <p>Brak uzupełnionego menu,</p>
             <p>nie ma dań do wyboru</p>
           </div>
@@ -27,33 +27,38 @@
 
           @if (selectedCategory) {
             <div class="dishes-list__container">
-              @for (dish of dishes; track $index) {
-                <mat-card appearance="outlined">
-                  <mat-card-header>
-                    <mat-card-title matTooltip="{{ dish.name }}">
-                      <div class="card-header">
-                        {{ dish.name }}
-                      </div>
-                    </mat-card-title>
-                    <mat-card-subtitle matTooltip="{{ dish.description }}">
-                      <div class="dish-price">
-                        {{ dish.price | number: "1.2-2" }} zł
-                      </div>
-                      {{ dish.description }}
-                    </mat-card-subtitle>
-                  </mat-card-header>
-                  <mat-card-actions align="end">
-                    <button
-                      mat-stroked-button
-                      color="primary"
-                      (click)="addToCart(dish)"
-                    >
-                      Dodaj
-                      <mat-icon>add</mat-icon>
-                    </button>
-                  </mat-card-actions>
-                </mat-card>
+              @if (dishes?.length === 0) {
+                <p>Brak dań w tej kategorii</p>
+              }@else {
+                @for (dish of dishes; track $index) {
+                  <mat-card appearance="outlined">
+                    <mat-card-header>
+                      <mat-card-title matTooltip="{{ dish.name }}">
+                        <div class="card-header">
+                          {{ dish.name }}
+                        </div>
+                      </mat-card-title>
+                      <mat-card-subtitle matTooltip="{{ dish.description }}">
+                        <div class="dish-price">
+                          {{ dish.price | number: "1.2-2" }} zł
+                        </div>
+                        {{ dish.description }}
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                      <button
+                        mat-stroked-button
+                        color="primary"
+                        (click)="addToCart(dish)"
+                      >
+                        Dodaj
+                        <mat-icon>add</mat-icon>
+                      </button>
+                    </mat-card-actions>
+                  </mat-card>
+                }
               }
+              
             </div>
           } @else {
             <p>Wybierz kategorię</p>
