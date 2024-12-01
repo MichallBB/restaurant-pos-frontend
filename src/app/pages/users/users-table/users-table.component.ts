@@ -21,7 +21,6 @@ import { RolePipe } from '../../../pipes/role.pipe';
   imports: [
     MatTableModule,
     MatProgressSpinnerModule,
-    MatSlideToggle,
     MatInputModule,
     MatIcon,
     MatButtonModule,

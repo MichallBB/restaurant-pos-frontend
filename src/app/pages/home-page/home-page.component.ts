@@ -24,6 +24,6 @@ import { NotificationMenuComponent } from "./notification-menu/notification-menu
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-
   isDrawerClosed = false;
+  
 }

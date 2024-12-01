@@ -64,7 +64,6 @@ export class DishesTableComponent {
   getAllDishes() {
     this.dataLoaded = false;
     this.dishService.getAllDishes().subscribe((dishes) => {
-      console.log(dishes);
       this.data = dishes;
       this.dataLoaded = true;
       this.dataSource = new MatTableDataSource(this.data);

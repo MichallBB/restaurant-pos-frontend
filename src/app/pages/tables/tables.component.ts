@@ -12,10 +12,7 @@ import { DialogAddTableComponent } from './dialog-add-table/dialog-add-table.com
   selector: 'app-tables',
   standalone: true,
   imports: [
-    MatRipple,
     MatIcon,
-    MatSlideToggle,
-    DishesTableComponent,
     TablesListComponent,
     MatButtonModule
 ],

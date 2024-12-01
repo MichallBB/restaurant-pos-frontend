@@ -3,7 +3,7 @@
   <section>
     <div class="new-order__container">
       <div class="dishes__container">
-        @if (categoryWithDishes?.length === 0) {
+        @if (categoryWithDishes && categoryWithDishes.length === 0) {
           <div style="font-size: large; font-weight: 500; margin-top: 20px">
             <p>Brak uzupełnionego menu,</p>
             <p>nie ma dań do wyboru</p>
@@ -27,7 +27,7 @@
 
           @if (selectedCategory) {
             <div class="dishes-list__container">
-              @if (dishes?.length === 0) {
+              @if (dishes && dishes.length === 0) {
                 <p>Brak dań w tej kategorii</p>
               }@else {
                 @for (dish of dishes; track $index) {

@@ -13,8 +13,6 @@ import { UsersTableComponent } from "./users-table/users-table.component";
   imports: [
     MatButton,
     MatIcon,
-    MatRipple,
-    MatSlideToggle,
     UsersTableComponent
 ],
   templateUrl: './users.component.html',

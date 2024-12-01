@@ -21,7 +21,6 @@ import { DialogEditTableComponent } from '../dialog-edit-table/dialog-edit-table
   imports: [
     MatTableModule,
     MatProgressSpinnerModule,
-    MatSlideToggle,
     MatInputModule,
     MatIcon,
     MatButtonModule,

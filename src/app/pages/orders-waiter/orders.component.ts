@@ -26,10 +26,8 @@ import { MatProgressSpinner, MatSpinner } from '@angular/material/progress-spinn
     MatProgressBarModule,
     RouterLink,
     RouterLinkActive,
-    TimeDiffInMinutes,
     CommonModule,
     MatCheckboxModule,
-    MatIcon,
     OrderPanelComponent,
     MatProgressSpinner
   ],

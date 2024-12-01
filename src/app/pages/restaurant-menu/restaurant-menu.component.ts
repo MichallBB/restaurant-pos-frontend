@@ -13,9 +13,7 @@ import { DialogAddDishComponent } from './dialog-add-dish/dialog-add-dish.compon
   standalone: true,
   imports: [
     MatButton,
-    MatRipple,
     MatIcon,
-    MatSlideToggle,
     DishesTableComponent,
   ],
   templateUrl: './restaurant-menu.component.html',
