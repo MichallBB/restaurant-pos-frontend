@@ -15,7 +15,7 @@ import { MatRipple } from '@angular/material/core';
 @Component({
   selector: 'app-user-settings-page',
   standalone: true,
-  imports: [MatButtonModule, MatInput, MatIconModule, ReactiveFormsModule, MatRipple],
+  imports: [MatButtonModule, MatIconModule, ReactiveFormsModule, MatRipple],
   templateUrl: './user-settings-page.component.html',
   styleUrl: './user-settings-page.component.scss',
 })

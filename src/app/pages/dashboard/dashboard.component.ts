@@ -10,6 +10,7 @@ import { OrdersHistoryService } from '../../services/orders-history/orders-histo
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HistoryDish } from '../../models/history-dish.model';
 import { DishService } from '../../services/dish-service.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,7 @@ export class DashboardComponent {
   ordersTodayQuantity: number = 0;
   chartLoaded = false;
   dishesToOrder: number = 0;
+  interval: number = 0.5;
 
   chart: any;
 
@@ -37,10 +39,12 @@ export class DashboardComponent {
     animationEnabled: true,
     axisX: {
       labelPlacement: 'inside',
+
     },
     axisY: {
       includeZero: true,
       suffix: ' szt',
+      interval: this.interval,
     },
     data: [
       {
@@ -48,8 +52,7 @@ export class DashboardComponent {
         indexLabel: '{y}',
         yValueFormatString: '#,###szt',
         dataPoints: [
-          { label: 'Pizza', y: 10 },
-          { label: 'Pasta', y: 15 },
+          { label: 'Ładowanie...', y: 0 },
         ],
       },
     ],
@@ -69,6 +72,7 @@ export class DashboardComponent {
     this.getOrdersTodayQuantity();
     this.getDishesFromLastWeek();
     this.getAllDishes();
+
   }
 
   getActiveOrders() {
@@ -96,6 +100,21 @@ export class DashboardComponent {
         return { label: dish.dishName, y: dish.quantity };
       });
       this.chartLoaded = true;
+
+
+      // quanttiy to calculate interval
+      let sum = 0;
+      this.chartOptions.data[0].dataPoints.forEach((element: any) => {
+        sum += element.y;
+      });
+      if(sum === 0) {
+        sum = 1;
+      }
+      this.interval = Math.ceil(sum / 10);
+      this.chartOptions.axisY.interval = this.interval;
+
+
+      // -------
       if (dishes.length === 0) {
         this.chartOptions.data[0].dataPoints = [
           { label: 'Brak danych', y: 0 }

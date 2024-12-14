@@ -57,12 +57,15 @@
           (click)="openConfirmOrderDialog()"
           mat-raised-button
           color="primary"
-          [disabled]="cartItems.length === 0 || !tableSelected"
+          [disabled]="cartItems.length === 0 || !tableSelected || loading"
         >
-          Zamów
+          @if (loading) {
+            <mat-spinner [diameter]="30"></mat-spinner>
+          } @else {
+            Zamów
+          }
         </button>
       </div>
-
     </div>
   </div>
 </div>

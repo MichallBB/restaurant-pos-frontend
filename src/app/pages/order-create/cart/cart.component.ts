@@ -21,6 +21,7 @@ import { Router } from '@angular/router';
 import { DishWithCategoryName } from '../../../models/dish-with-category-name.model';
 import { DishInOrder } from '../../../models/dish-in-order.model';
 import { CommonModule } from '@angular/common';
+import { MatSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cart',
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatSpinner,
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
@@ -42,6 +44,7 @@ export class CartComponent implements OnInit {
   @Input() cartItems: CartItem[] = [];
   sumOfCartItems = 0;
   quantityOfItems = 0;
+  loading = false;
 
   tables: RestaurantTable[] = [];
   tableSelected!: RestaurantTable;
@@ -99,8 +102,10 @@ export class CartComponent implements OnInit {
       });
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.loading = true;
       if (result) {
         let orderRequest: OrderRequest = this.createOrderObject();
+        
 
         this.ordersService.createOrder(orderRequest).subscribe({
           next: (order) => {
@@ -112,6 +117,7 @@ export class CartComponent implements OnInit {
             }, 1000);
           },
           error: (error) => {
+            this.loading = false;
             this.toastr.error('Błąd podczas składania zamówienia');
           },
         });
