@@ -20,12 +20,17 @@ mat-dialog-content {
     align-items: center;
 
     .cart-item__name {
-      width: 200px;
+      width: 160px;
       text-align: left;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 0 0 0 0;
+    }
+
+    .cart-item__price{
+      width: 90px;
+      text-align: right;
     }
   }
 }

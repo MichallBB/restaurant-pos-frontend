@@ -19,7 +19,6 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatIcon,
     MatButtonModule,
     MatInputModule,
-    CdkDrag,
     CdkDragHandle,
     MatRipple,
     ReactiveFormsModule,

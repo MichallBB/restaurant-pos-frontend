@@ -25,11 +25,9 @@ export class UsersComponent {
 
   addNewUser() {
     const dialogRef = this.dialog.open(DialogAddUserComponent, {
-
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`The dialog was closed + ${result}`);
       if (result !== undefined) {
       }
     });

@@ -11,18 +11,66 @@ import { UserSettingsPageComponent } from './pages/user-settings-page/user-setti
 import { OrderCreateComponent } from './pages/order-create/order-create.component';
 import { OrdersChefComponent } from './pages/orders-chef/orders-chef.component';
 import { TablesComponent } from './pages/tables/tables.component';
+import { RoleGuard } from './auth/role.guard';
+
 
 export const routes: Routes = [
-    { path: 'login', component: LoginComponent },
-    { path: '', component: HomePageComponent, canActivate: [AuthGuard] , children:[
-        {path: 'strona-domowa', component: DashboardComponent, canActivate: [AuthGuard]},
-        { path: 'menu', component: RestaurantMenuComponent, canActivate: [AuthGuard] },
-        { path: 'zamowienia', component: OrdersComponent, canActivate: [AuthGuard]},
-        { path: 'zamowienia/nowe-zamowienie', component: OrderCreateComponent, canActivate: [AuthGuard] },
-        { path: 'stoliki', component: TablesComponent, canActivate: [AuthGuard]},
-        { path: 'uzytkownicy', component: UsersComponent, canActivate: [AuthGuard]},
-        { path: 'ustawienia', component: UserSettingsPageComponent, canActivate: [AuthGuard]},
-        { path: 'zamowienia-kuchni', component: OrdersChefComponent, canActivate: [AuthGuard]}
-    ]},
-    { path: '**', redirectTo: 'strona-domowa'},
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: HomePageComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN', 'WAITER', 'CHEF'] },
+    children: [
+      {
+        path: 'strona-domowa',
+        component: DashboardComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN', 'WAITER', 'CHEF'] },
+      },
+      {
+        path: 'menu',
+        component: RestaurantMenuComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN'] },
+      },
+      {
+        path: 'zamowienia',
+        component: OrdersComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN', 'WAITER'] },
+      },
+      {
+        path: 'zamowienia/nowe-zamowienie',
+        component: OrderCreateComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN', 'WAITER'] },
+      },
+      {
+        path: 'stoliki',
+        component: TablesComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN'] },
+      },
+      {
+        path: 'uzytkownicy',
+        component: UsersComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN'] },
+      },
+      {
+        path: 'ustawienia',
+        component: UserSettingsPageComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN', 'WAITER', 'CHEF'] },
+      },
+      {
+        path: 'zamowienia-kuchni',
+        component: OrdersChefComponent,
+        canActivate: [RoleGuard],
+        data: { roles: ['ADMIN', 'CHEF'] },
+      },
+    ],
+  },
+  { path: '**', redirectTo: 'login' },
 ];

@@ -1,6 +1,5 @@
 <nav>
   <div class="nav-items-container">
-
     <div matRipple class="nav-item">
       <a routerLink="strona-domowa" routerLinkActive="active">
         <mat-icon>home</mat-icon>
@@ -8,40 +7,50 @@
       </a>
     </div>
 
-    <div matRipple class="nav-item">
-      <a routerLink="zamowienia" routerLinkActive="active">
-        <mat-icon>restaurant_menu</mat-icon>
-        <p>Zamówienia</p>
-      </a>
-    </div>
+    @if (isRoleAllowed(["ADMIN", "WAITER"])) {
+      <div matRipple class="nav-item">
+        <a routerLink="zamowienia" routerLinkActive="active">
+          <mat-icon>restaurant_menu</mat-icon>
+          <p>Zamówienia</p>
+        </a>
+      </div>
+    }
 
-    <div matRipple class="nav-item">
-      <a routerLink="zamowienia-kuchni" routerLinkActive="active">
-        <mat-icon>restaurant_menu</mat-icon>
-        <p>Zamówienia - kuchnia</p>
-      </a>
-    </div>
+    @if (isRoleAllowed(["ADMIN", "CHEF"])) {
+      <div matRipple class="nav-item">
+        <a routerLink="zamowienia-kuchni" routerLinkActive="active">
+          <mat-icon>restaurant_menu</mat-icon>
+          <p>Zamówienia - kuchnia</p>
+        </a>
+      </div>
+    }
 
-    <div matRipple class="nav-item">
-      <a routerLink="menu" routerLinkActive="active">
-        <mat-icon>fastfood</mat-icon>
-        <p>Menu</p>
-      </a>
-    </div>
+    @if (isRoleAllowed(["ADMIN"])) {
+      <div matRipple class="nav-item">
+        <a routerLink="menu" routerLinkActive="active">
+          <mat-icon>fastfood</mat-icon>
+          <p>Menu</p>
+        </a>
+      </div>
+    }
 
-    <div matRipple class="nav-item">
-      <a routerLink="stoliki" routerLinkActive="active">
-        <mat-icon>apps</mat-icon>
-        <p>Stoliki</p>
-      </a>
-    </div>
+    @if (isRoleAllowed(["ADMIN"])) {
+      <div matRipple class="nav-item">
+        <a routerLink="stoliki" routerLinkActive="active">
+          <mat-icon>apps</mat-icon>
+          <p>Stoliki</p>
+        </a>
+      </div>
+    }
 
-    <div matRipple class="nav-item">
-      <a routerLink="uzytkownicy" routerLinkActive="active">
-        <mat-icon>account_circle</mat-icon>
-        <p>Użytkownicy</p>
-      </a>
-    </div>
+    @if (isRoleAllowed(["ADMIN"])) {
+      <div matRipple class="nav-item">
+        <a routerLink="uzytkownicy" routerLinkActive="active">
+          <mat-icon>account_circle</mat-icon>
+          <p>Użytkownicy</p>
+        </a>
+      </div>
+    }
   </div>
 
   <footer>

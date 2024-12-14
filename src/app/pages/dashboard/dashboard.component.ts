@@ -30,12 +30,14 @@ export class DashboardComponent {
   ordersTodayQuantity: number = 0;
   chartLoaded = false;
   dishesToOrder: number = 0;
-  history = true;
-  
+
   chart: any;
 
   chartOptions = {
     animationEnabled: true,
+    axisX: {
+      labelPlacement: 'inside',
+    },
     axisY: {
       includeZero: true,
       suffix: ' szt',
@@ -45,7 +47,10 @@ export class DashboardComponent {
         type: 'bar',
         indexLabel: '{y}',
         yValueFormatString: '#,###szt',
-        dataPoints: [{}],
+        dataPoints: [
+          { label: 'Pizza', y: 10 },
+          { label: 'Pasta', y: 15 },
+        ],
       },
     ],
   };
@@ -92,7 +97,9 @@ export class DashboardComponent {
       });
       this.chartLoaded = true;
       if (dishes.length === 0) {
-        this.history = false;  
+        this.chartOptions.data[0].dataPoints = [
+          { label: 'Brak danych', y: 0 }
+        ]
       }
     });
   }

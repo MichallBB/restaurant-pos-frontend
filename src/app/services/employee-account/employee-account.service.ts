@@ -4,33 +4,50 @@ import { EmployeeAccount } from '../../models/employee-account';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmployeeAccountService {
-
-  constructor() { }
+  constructor() {}
 
   http = inject(HttpClient);
 
   getAllEmployees(): Observable<EmployeesResponse> {
-    return this.http.get<EmployeesResponse>(`http://localhost:8080/api/employeeAccount/getAll`);
+    return this.http.get<EmployeesResponse>(
+      `http://localhost:8080/api/employeeAccount/getAll`,
+    );
   }
 
   getEmployeeById(id: number): Observable<EmployeeAccount> {
-    return this.http.get<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/${id}`);
+    return this.http.get<EmployeeAccount>(
+      `http://localhost:8080/api/employeeAccount/${id}`,
+    );
   }
 
-  getAllSortedByRole(): Observable<UserObj[]> {
-    return this.http.get<UserObj[]>(`http://localhost:8080/api/employeeAccount/allSortedByRole`);
+  getAllSortedByRole(): Observable<EmployeeAccount[]> {
+    return this.http.get<EmployeeAccount[]>(
+      `http://localhost:8080/api/employeeAccount/allSortedByRole`,
+    );
   }
 
-  
-}
+  changeAccountName(user: EmployeeAccount): Observable<EmployeeAccount> {
+    return this.http.put<EmployeeAccount>(
+      `http://localhost:8080/api/employeeAccount/updateName`,
+      user,
+    );
+  }
 
-export interface UserObj{
-  id: number;
-  name: string;
-  role: string;
+  deleteUser(id: number): Observable<EmployeeAccount> {
+    return this.http.delete<EmployeeAccount>(
+      `http://localhost:8080/api/employeeAccount/${id}`,
+    );
+  }
+
+  editUser(user: EmployeeAccount): Observable<EmployeeAccount> {
+    return this.http.put<EmployeeAccount>(
+      `http://localhost:8080/api/employeeAccount/updateUser`,
+      user,
+    );
+  }
 }
 
 export interface EmployeesResponse {

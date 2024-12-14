@@ -79,7 +79,7 @@ export class TablesListComponent {
               );
               return;
             }
-            this.toastr.error('Błąd podczas usuwania dania');
+            this.toastr.error('Błąd podczas usuwania stolika');
           },
         });
       } else {

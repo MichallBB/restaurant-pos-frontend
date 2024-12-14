@@ -10,7 +10,6 @@ export class UserService {
     constructor() { }
 
     http = inject(HttpClient)
-    // Add your service methods here
 
     getUserByToken(): Observable<EmployeeAccount> {
         return this.http.get<EmployeeAccount>(`http://localhost:8080/api/employeeAccount/getByToken`);

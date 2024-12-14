@@ -6,7 +6,23 @@
       <div class="cart-item">
         <div class="cart-item__name">{{ cartItem.dish.name }}</div>
         <div class="cart-item__price">
-          {{ cartItem.dish.price | number: '1.2-2' }} zł
+          {{ cartItem.dish.price | number: "1.2-2" }} zł
+        </div>
+        <div>
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="removeItem(cartItem.dish)"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <button
+          mat-icon-button
+          color="primary"
+          (click)="addTheSameItem(cartItem.dish)"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
         </div>
 
         <div class="cart-item__quantity">
@@ -20,13 +36,15 @@
 
   <div class="cart__summary">
     <div class="cart__summary__total">
-      <span>Suma: {{ sumOfCartItems | number: '1.2-2' }} zł</span>
+      <span>Suma: {{ sumOfCartItems | number: "1.2-2" }} zł</span>
       <span>Stolik: {{ selectedTable }}</span>
     </div>
   </div>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-stroked-button mat-dialog-close>Anuluj</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true">Potwierdź</button>
+  <button mat-stroked-button mat-dialog-close>Anuluj</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    Potwierdź
+  </button>
 </mat-dialog-actions>

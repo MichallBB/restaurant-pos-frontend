@@ -37,7 +37,7 @@ import { Dish } from '../../../models/dish.model';
 })
 export class DialogEditTableComponent {
   editTableFormGroup = new FormGroup({
-    tableNumber: new FormControl(''),
+    tableNumber: new FormControl(this.data.table.tableNumber),
   });
   private tableNumberSubject = new Subject<string>();
   private subscription!: Subscription;

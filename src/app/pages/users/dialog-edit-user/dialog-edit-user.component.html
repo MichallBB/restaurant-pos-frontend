@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>Nowy użytkownik</h2>
-<form [formGroup]="newUserFormGroup" (ngSubmit)="addNewUser()">
+<h2 mat-dialog-title>Edytuj stolik</h2>
+<form [formGroup]="editUserFormGroup" (ngSubmit)="editUser()">
   <mat-dialog-content>
     <mat-form-field>
       <mat-label>Imie i nazwisko</mat-label>
@@ -23,7 +23,7 @@
       mat-raised-button
       color="primary"
       [mat-dialog-close]="true"
-      [disabled]="newUserFormGroup.invalid"
+      [disabled]="editUserFormGroup.invalid"
     >
       Potwierdź
     </button>

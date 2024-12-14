@@ -17,6 +17,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService, registerObj } from '../../../auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { RefreshService } from '../../../services/dish-category/refresh-dish-category.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -40,7 +42,10 @@ export class DialogAddUserComponent {
     name: new FormControl('', [Validators.required]),
     role: new FormControl('', [Validators.required]),
   });
+  private subscription!: Subscription;
+
   constructor(
+    private refreshService: RefreshService,
     private authService: AuthService,
     private toastr: ToastrService,
   ) {}
@@ -48,24 +53,23 @@ export class DialogAddUserComponent {
   ngOnInit(): void {}
 
   addNewUser(): void {
-    console.log('Add new user');
-    if(!this.newUserFormGroup.valid) {
+    if (!this.newUserFormGroup.valid) {
       return;
     }
 
     const user: registerObj = {
       name: this.newUserFormGroup.value.name ?? '',
       role: this.newUserFormGroup.value.role ?? '',
-    }
+    };
 
     this.authService.register(user).subscribe({
       next: () => {
+        this.refreshService.refresh();
         this.toastr.success('Dodano nowego użytkownika');
       },
       error: () => {
         this.toastr.error('Błąd podczas dodawania użytkownika');
-      }
-    })
-
+      },
+    });
   }
 }

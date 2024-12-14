@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, switchMap, tap } from 'rxjs';
+import { catchError, Observable, switchMap, tap } from 'rxjs';
 import { UserService } from './user.service';
 import { CurrentUserService } from './current-user.service';
 import { EmployeeAccount } from '../models/employee-account';
@@ -55,6 +55,10 @@ export class AuthService {
         this.currentUserService.currentUser = user;
       }),
       switchMap(() => [true]),
+      catchError((error) => {
+        this.router.navigate(['/login']);
+        return [false];
+      })
     );
   }
 
